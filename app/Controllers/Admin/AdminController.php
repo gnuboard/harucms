@@ -433,4 +433,51 @@ class AdminController
 
         Helper::redirect('/admin/contents');
     }
+
+    /**
+     * 세션 관리 페이지
+     */
+    public function sessions(): void
+    {
+        $this->requireAuth();
+
+        $sessionHandler = new \App\Core\SessionHandler();
+
+        // 활성 세션 목록 조회
+        $sessions = $sessionHandler->getActiveSessions();
+
+        // 통계 계산
+        $stats = [
+            'total_sessions' => count($sessions),
+            'logged_in_sessions' => count(array_filter($sessions, fn($s) => !empty($s['user_id']))),
+            'guest_sessions' => count(array_filter($sessions, fn($s) => empty($s['user_id'])))
+        ];
+
+        Helper::view('admin/sessions', compact('sessions', 'stats'));
+    }
+
+    /**
+     * 세션 삭제
+     */
+    public function deleteSession(): void
+    {
+        $this->requireAuth();
+
+        $sessionId = $_POST['session_id'] ?? '';
+
+        if (empty($sessionId)) {
+            Helper::flash('error', '세션 ID가 필요합니다.');
+            Helper::redirect('/admin/sessions');
+        }
+
+        $sessionHandler = new \App\Core\SessionHandler();
+
+        if ($sessionHandler->destroy($sessionId)) {
+            Helper::flash('success', '세션이 삭제되었습니다.');
+        } else {
+            Helper::flash('error', '세션 삭제에 실패했습니다.');
+        }
+
+        Helper::redirect('/admin/sessions');
+    }
 }

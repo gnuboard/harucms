@@ -210,6 +210,7 @@
                 <a href="/admin/contents" class="link-item">컨텐츠 관리</a>
                 <a href="/admin/users" class="link-item">사용자 관리</a>
                 <a href="/admin/boards" class="link-item">게시판 관리</a>
+                <a href="/admin/sessions" class="link-item">세션 관리</a>
                 <a href="/" class="link-item">사이트 보기</a>
             </div>
         </div>

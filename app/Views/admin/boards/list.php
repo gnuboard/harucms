@@ -27,6 +27,7 @@
             <li><a href="/admin/users">사용자 관리</a></li>
             <li><a href="/admin/boards">게시판 관리</a></li>
             <li><a href="/admin/contents">컨텐츠 관리</a></li>
+            <li><a href="/admin/sessions">세션 관리</a></li>
             <li><a href="/admin/logout">로그아웃</a></li>
         </ul>
     </div>

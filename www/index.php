@@ -1,8 +1,5 @@
 <?php
 
-// 세션 시작
-session_start();
-
 // 오류 보고 설정 (개발 환경)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -31,10 +28,18 @@ spl_autoload_register(function ($class) {
 // 라우터 및 컨트롤러 로드
 use App\Core\Router;
 use App\Core\Plugin;
+use App\Core\SessionHandler;
 use App\Controllers\UserController;
 use App\Controllers\BoardController;
 use App\Controllers\ContentController;
 use App\Controllers\Admin\AdminController;
+
+// DB 기반 세션 핸들러 설정
+$sessionHandler = new SessionHandler();
+session_set_save_handler($sessionHandler, true);
+
+// 세션 시작
+session_start();
 
 // 플러그인 로드
 // Plugin::load();
@@ -95,6 +100,10 @@ $router->post('/admin/contents/create', [AdminController::class, 'storeContent']
 $router->get('/admin/contents/:id/edit', [AdminController::class, 'editContent']);
 $router->post('/admin/contents/:id/edit', [AdminController::class, 'updateContent']);
 $router->post('/admin/contents/:id/delete', [AdminController::class, 'deleteContent']);
+
+// 관리자 - 세션 관리
+$router->get('/admin/sessions', [AdminController::class, 'sessions']);
+$router->post('/admin/sessions/delete', [AdminController::class, 'deleteSession']);
 
 // 라우터 실행
 $router->dispatch();
