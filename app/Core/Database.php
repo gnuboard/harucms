@@ -29,7 +29,17 @@ class Database
             return $this->connection;
         }
 
-        $config = require __DIR__ . '/../../config/database.php';
+        // data/config/database.php 우선, 없으면 config/database.php 사용 (하위 호환성)
+        $configPath = __DIR__ . '/../../data/config/database.php';
+        if (!file_exists($configPath)) {
+            $configPath = __DIR__ . '/../../config/database.php';
+        }
+
+        if (!file_exists($configPath)) {
+            die('Database configuration file not found. Please run /install first.');
+        }
+
+        $config = require $configPath;
 
         try {
             $dsn = "mysql:host={$config['host']};dbname={$config['database']};charset={$config['charset']}";

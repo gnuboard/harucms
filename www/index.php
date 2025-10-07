@@ -32,11 +32,25 @@ use App\Core\SessionHandler;
 use App\Controllers\UserController;
 use App\Controllers\BoardController;
 use App\Controllers\ContentController;
+use App\Controllers\InstallController;
 use App\Controllers\Admin\AdminController;
 
-// DB 기반 세션 핸들러 설정
-$sessionHandler = new SessionHandler();
-session_set_save_handler($sessionHandler, true);
+// 설치 여부 확인
+$configPath = BASE_PATH . '/data/config/database.php';
+$isInstalled = file_exists($configPath);
+
+// 설치되지 않은 경우 /install로 리다이렉트 (단, /install 경로가 아닌 경우에만)
+if (!$isInstalled && $_SERVER['REQUEST_URI'] !== '/install' && !preg_match('#^/install#', $_SERVER['REQUEST_URI'])) {
+    header('Location: /install');
+    exit;
+}
+
+// 설치된 경우에만 세션 핸들러 시작
+if ($isInstalled) {
+    // DB 기반 세션 핸들러 설정
+    $sessionHandler = new SessionHandler();
+    session_set_save_handler($sessionHandler, true);
+}
 
 // 세션 시작
 session_start();
@@ -45,6 +59,10 @@ session_start();
 // Plugin::load();
 
 $router = new Router();
+
+// 설치 라우트 (설치되지 않은 경우에만)
+$router->get('/install', [InstallController::class, 'index']);
+$router->post('/install', [InstallController::class, 'install']);
 
 // 메인 페이지
 $router->get('/', function() {

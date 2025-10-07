@@ -1,0 +1,22 @@
+# 데이터베이스 설정 파일 (보안)
+data/config/database.php
+
+# 업로드 파일
+data/uploads/*
+!data/uploads/.gitkeep
+
+# 로그 파일
+data/logs/*.log
+
+# 임시 파일
+*.tmp
+*.cache
+
+# IDE 설정
+.vscode/
+.idea/
+*.sublime-*
+
+# OS 파일
+.DS_Store
+Thumbs.db
