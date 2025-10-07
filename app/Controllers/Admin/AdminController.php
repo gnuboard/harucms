@@ -202,6 +202,7 @@ class AdminController
         foreach ($boards as &$board) {
             $board['post_count'] = $this->boardModel->getPostCount($board['id']);
         }
+        unset($board); // 참조 변수 해제
 
         ob_start();
         require BASE_PATH . '/app/Views/admin/boards/list.php';
