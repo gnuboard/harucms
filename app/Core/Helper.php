@@ -256,4 +256,23 @@ class Helper
 
         return null; // 검증 통과
     }
+
+    /**
+     * 뷰 렌더링
+     */
+    public static function view(string $view, array $data = []): void
+    {
+        // 데이터 배열을 변수로 추출
+        extract($data);
+
+        // 뷰 파일 경로
+        $viewPath = BASE_PATH . '/app/Views/' . str_replace('.', '/', $view) . '.php';
+
+        if (!file_exists($viewPath)) {
+            die("View not found: {$view}");
+        }
+
+        // 뷰 렌더링
+        require $viewPath;
+    }
 }
