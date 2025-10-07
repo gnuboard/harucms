@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMS 설치</title>
+    <title>하루 CMS 설치</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -164,7 +164,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>🚀 CMS 설치</h1>
+        <h1>🚀 하루 CMS 설치</h1>
         <p class="subtitle">빠르고 가벼운 PHP 기반 CMS 솔루션</p>
 
         <?php if (!empty($error)): ?>
