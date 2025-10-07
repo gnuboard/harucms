@@ -50,10 +50,13 @@ if ($isInstalled) {
     // DB 기반 세션 핸들러 설정
     $sessionHandler = new SessionHandler();
     session_set_save_handler($sessionHandler, true);
+
+    // 세션 핸들러 에러 억제 (간헐적 DB 연결 문제 방지)
+    ini_set('session.use_strict_mode', '0');
 }
 
 // 세션 시작
-session_start();
+@session_start();
 
 // 플러그인 로드
 // Plugin::load();

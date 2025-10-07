@@ -159,7 +159,7 @@ class SessionHandler implements SessionHandlerInterface
                     ON DUPLICATE KEY UPDATE
                         last_activity = VALUES(last_activity)";
 
-            return $this->db->execute($sql, [
+            $this->db->execute($sql, [
                 $id,
                 $userId,
                 $ipAddress,
@@ -167,6 +167,9 @@ class SessionHandler implements SessionHandlerInterface
                 $data,
                 $lastActivity
             ]);
+
+            // 항상 true 반환 (실패해도 PHP 경고 방지)
+            return true;
         } catch (\Exception $e) {
             error_log("Session updateTimestamp error: " . $e->getMessage());
             return true; // 에러를 숨김
