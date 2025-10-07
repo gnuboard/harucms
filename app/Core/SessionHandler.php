@@ -148,8 +148,25 @@ class SessionHandler implements SessionHandlerInterface
         }
 
         try {
-            $sql = "UPDATE sessions SET last_activity = ? WHERE id = ?";
-            return $this->db->execute($sql, [time(), $id]);
+            // UPDATE가 실패할 수 있으므로 UPSERT 방식 사용
+            $userId = $_SESSION['user_id'] ?? null;
+            $ipAddress = $_SERVER['REMOTE_ADDR'] ?? null;
+            $userAgent = substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, 255);
+            $lastActivity = time();
+
+            $sql = "INSERT INTO sessions (id, user_id, ip_address, user_agent, payload, last_activity)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                    ON DUPLICATE KEY UPDATE
+                        last_activity = VALUES(last_activity)";
+
+            return $this->db->execute($sql, [
+                $id,
+                $userId,
+                $ipAddress,
+                $userAgent,
+                $data,
+                $lastActivity
+            ]);
         } catch (\Exception $e) {
             error_log("Session updateTimestamp error: " . $e->getMessage());
             return true; // 에러를 숨김
