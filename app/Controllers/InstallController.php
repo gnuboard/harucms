@@ -126,28 +126,34 @@ class InstallController
 
             // 스키마 실행 (테이블이 없거나 덮어쓰기인 경우)
             if (!$usersTableExists || $overwrite) {
-                $statements = explode(';', $schema);
+                // 주석 제거
+                $schemaClean = preg_replace('/^--.*$/m', '', $schema);
+                $statements = explode(';', $schemaClean);
                 $executedCount = 0;
                 $errors = [];
+                $debugInfo = [];
 
                 foreach ($statements as $index => $statement) {
                     $statement = trim($statement);
-                    // 빈 문자열이나 주석만 있는 줄 스킵
-                    if (empty($statement) || preg_match('/^\s*--/', $statement)) {
+
+                    // 빈 문자열 스킵
+                    if (empty($statement)) {
                         continue;
                     }
+
+                    $debugInfo[] = "Statement $index: " . substr($statement, 0, 50) . '...';
 
                     try {
                         $pdo->exec($statement);
                         $executedCount++;
                     } catch (\PDOException $e) {
                         // INSERT 실패는 경고만 (중복 키 등)
-                        if (strpos(strtoupper($statement), 'INSERT') !== false) {
+                        if (stripos($statement, 'INSERT') !== false) {
                             $errors[] = "Warning [Line $index]: " . $e->getMessage();
                         } else {
                             // CREATE/ALTER 등 실패는 치명적 에러
-                            throw new \Exception('스키마 실행 오류 (Line ' . $index . '): ' . $e->getMessage() .
-                                '<br><br>실패한 SQL:<br><code style="background:#f5f5f5;padding:10px;display:block;overflow:auto;">' .
+                            throw new \Exception('스키마 실행 오류 (Statement ' . $index . '): ' . $e->getMessage() .
+                                '<br><br>실패한 SQL:<br><code style="background:#f5f5f5;padding:10px;display:block;overflow:auto;white-space:pre-wrap;">' .
                                 htmlspecialchars(substr($statement, 0, 500)) . '</code>');
                         }
                     }
@@ -155,7 +161,9 @@ class InstallController
 
                 // 스키마 실행 확인
                 if ($executedCount < 5) {
-                    throw new \Exception('스키마 실행이 불완전합니다. 실행된 SQL: ' . $executedCount . '개<br>에러: ' . implode('<br>', $errors));
+                    throw new \Exception('스키마 실행이 불완전합니다. 실행된 SQL: ' . $executedCount . '개<br>' .
+                        '에러: ' . implode('<br>', $errors) . '<br><br>' .
+                        '디버그 정보:<br>' . implode('<br>', array_slice($debugInfo, 0, 10)));
                 }
             }
 
