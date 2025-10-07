@@ -53,10 +53,24 @@ if ($isInstalled) {
 
     // 세션 핸들러 에러 억제 (간헐적 DB 연결 문제 방지)
     ini_set('session.use_strict_mode', '0');
+
+    // 세션 핸들러 경고 완전 억제
+    error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 }
 
 // 세션 시작
 @session_start();
+
+// 에러 보고 복원 (설치된 경우)
+if ($isInstalled) {
+    error_reporting(E_ALL);
+
+    // 스크립트 종료 시 세션 종료 경고 억제
+    register_shutdown_function(function() {
+        error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+        @session_write_close();
+    });
+}
 
 // 플러그인 로드
 // Plugin::load();
@@ -73,31 +87,7 @@ $router->get('/', function() {
     exit;
 });
 
-// 사용자 라우트
-$router->get('/login', [UserController::class, 'showLoginForm']);
-$router->post('/login', [UserController::class, 'login']);
-$router->get('/logout', [UserController::class, 'logout']);
-$router->get('/register', [UserController::class, 'showRegisterForm']);
-$router->post('/register', [UserController::class, 'register']);
-$router->get('/mypage', [UserController::class, 'myPage']);
-$router->post('/mypage', [UserController::class, 'updateProfile']);
-
-// 게시판 라우트
-$router->get('/boards/:board_name', [BoardController::class, 'index']);
-$router->get('/boards/:board_name/write', [BoardController::class, 'write']);
-$router->post('/boards/:board_name/write', [BoardController::class, 'store']);
-$router->get('/boards/:board_name/:post_id', [BoardController::class, 'view']);
-$router->get('/boards/:board_name/:post_id/edit', [BoardController::class, 'edit']);
-$router->post('/boards/:board_name/:post_id/edit', [BoardController::class, 'update']);
-$router->get('/boards/:board_name/:post_id/delete', [BoardController::class, 'delete']);
-$router->post('/boards/:board_name/:post_id/comments', [BoardController::class, 'addComment']);
-$router->post('/comments/:comment_id/delete', [BoardController::class, 'deleteComment']);
-
-// 컨텐츠 페이지 라우트
-$router->get('/page/:slug', [ContentController::class, 'show']);
-$router->get('/:slug', [ContentController::class, 'show']);
-
-// 관리자 라우트
+// 관리자 라우트 (가장 먼저 등록 - /:slug 보다 우선)
 $router->get('/admin', [AdminController::class, 'dashboard']);
 $router->get('/admin/login', [AdminController::class, 'showLoginForm']);
 $router->post('/admin/login', [AdminController::class, 'login']);
@@ -126,6 +116,30 @@ $router->post('/admin/contents/:id/delete', [AdminController::class, 'deleteCont
 // 관리자 - 세션 관리
 $router->get('/admin/sessions', [AdminController::class, 'sessions']);
 $router->post('/admin/sessions/delete', [AdminController::class, 'deleteSession']);
+
+// 사용자 라우트
+$router->get('/login', [UserController::class, 'showLoginForm']);
+$router->post('/login', [UserController::class, 'login']);
+$router->get('/logout', [UserController::class, 'logout']);
+$router->get('/register', [UserController::class, 'showRegisterForm']);
+$router->post('/register', [UserController::class, 'register']);
+$router->get('/mypage', [UserController::class, 'myPage']);
+$router->post('/mypage', [UserController::class, 'updateProfile']);
+
+// 게시판 라우트
+$router->get('/boards/:board_name', [BoardController::class, 'index']);
+$router->get('/boards/:board_name/write', [BoardController::class, 'write']);
+$router->post('/boards/:board_name/write', [BoardController::class, 'store']);
+$router->get('/boards/:board_name/:post_id', [BoardController::class, 'view']);
+$router->get('/boards/:board_name/:post_id/edit', [BoardController::class, 'edit']);
+$router->post('/boards/:board_name/:post_id/edit', [BoardController::class, 'update']);
+$router->get('/boards/:board_name/:post_id/delete', [BoardController::class, 'delete']);
+$router->post('/boards/:board_name/:post_id/comments', [BoardController::class, 'addComment']);
+$router->post('/comments/:comment_id/delete', [BoardController::class, 'deleteComment']);
+
+// 컨텐츠 페이지 라우트 (가장 마지막 - 모든 경로를 잡아버리므로)
+$router->get('/page/:slug', [ContentController::class, 'show']);
+$router->get('/:slug', [ContentController::class, 'show']);
 
 // 라우터 실행
 $router->dispatch();

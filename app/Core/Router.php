@@ -79,6 +79,10 @@ class Router
 
         // 404 처리
         http_response_code(404);
-        echo '404 Not Found';
+        echo '<h1>404 Not Found</h1>';
+        echo '<p>요청하신 페이지를 찾을 수 없습니다.</p>';
+        echo '<p>URI: ' . htmlspecialchars($uri) . '</p>';
+        echo '<p>Method: ' . htmlspecialchars($method) . '</p>';
+        echo '<p><a href="/">홈으로 이동</a></p>';
     }
 }

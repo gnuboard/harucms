@@ -151,12 +151,6 @@
 
             <button type="submit" class="btn-login">로그인</button>
         </form>
-
-        <div class="default-info">
-            <strong>기본 관리자 계정:</strong><br>
-            Email: admin@example.com<br>
-            PW: admin1234
-        </div>
     </div>
 </body>
 </html>
