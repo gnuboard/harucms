@@ -38,6 +38,13 @@
             <a href="/admin/boards/create" class="btn">게시판 추가</a>
         </div>
 
+        <?php if (isset($_GET['debug'])): ?>
+            <div style="background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+                <h3>디버그 정보</h3>
+                <pre><?php print_r($boards); ?></pre>
+            </div>
+        <?php endif; ?>
+
         <table>
             <thead>
                 <tr>
@@ -52,21 +59,27 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($boards as $board): ?>
+                <?php if (empty($boards)): ?>
                 <tr>
-                    <td><?= $board['id'] ?></td>
-                    <td><code><?= htmlspecialchars($board['name']) ?></code></td>
-                    <td><?= htmlspecialchars($board['title']) ?></td>
-                    <td><?= $board['post_count'] ?? 0 ?></td>
-                    <td><?= $board['use_comments'] ? '사용' : '미사용' ?></td>
-                    <td><?= $board['use_files'] ? '사용' : '미사용' ?></td>
-                    <td><?= $board['order_num'] ?></td>
-                    <td>
-                        <a href="/boards/<?= $board['name'] ?>" class="btn" style="padding: 4px 8px; font-size: 12px; background: #28a745;">보기</a>
-                        <a href="/admin/boards/<?= $board['id'] ?>/edit" class="btn" style="padding: 4px 8px; font-size: 12px;">수정</a>
-                    </td>
+                    <td colspan="8" style="text-align: center; padding: 40px; color: #999;">등록된 게시판이 없습니다.</td>
                 </tr>
-                <?php endforeach; ?>
+                <?php else: ?>
+                    <?php foreach ($boards as $board): ?>
+                    <tr>
+                        <td><?= $board['id'] ?></td>
+                        <td><code><?= htmlspecialchars($board['name']) ?></code></td>
+                        <td><?= htmlspecialchars($board['title']) ?></td>
+                        <td><?= $board['post_count'] ?? 0 ?></td>
+                        <td><?= $board['use_comments'] ? '사용' : '미사용' ?></td>
+                        <td><?= $board['use_files'] ? '사용' : '미사용' ?></td>
+                        <td><?= $board['order_num'] ?></td>
+                        <td>
+                            <a href="/boards/<?= $board['name'] ?>" class="btn" style="padding: 4px 8px; font-size: 12px; background: #28a745;">보기</a>
+                            <a href="/admin/boards/<?= $board['id'] ?>/edit" class="btn" style="padding: 4px 8px; font-size: 12px;">수정</a>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
