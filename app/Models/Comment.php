@@ -18,7 +18,7 @@ class Comment
      */
     public function getByPostId(int $postId): array
     {
-        $sql = "SELECT c.*, u.username, u.name as author_name
+        $sql = "SELECT c.*, u.email, u.name as author_name
                 FROM comments c
                 LEFT JOIN users u ON c.user_id = u.id
                 WHERE c.post_id = ? AND c.status = 'active'
@@ -42,7 +42,7 @@ class Comment
      */
     public function findById(int $id): ?array
     {
-        $sql = "SELECT c.*, u.username
+        $sql = "SELECT c.*, u.email
                 FROM comments c
                 LEFT JOIN users u ON c.user_id = u.id
                 WHERE c.id = ?";
@@ -101,7 +101,7 @@ class Comment
      */
     public function getRecent(int $limit = 10): array
     {
-        $sql = "SELECT c.*, u.username, u.name as author_name, p.title as post_title
+        $sql = "SELECT c.*, u.email, u.name as author_name, p.title as post_title
                 FROM comments c
                 LEFT JOIN users u ON c.user_id = u.id
                 LEFT JOIN posts p ON c.post_id = p.id

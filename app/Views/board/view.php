@@ -33,7 +33,7 @@
         <div class="post-header">
             <h1 class="post-title"><?= htmlspecialchars($post['title']) ?></h1>
             <div class="post-meta">
-                <span>작성자: <?= htmlspecialchars($post['author_name'] ?? $post['username'] ?? '익명') ?></span>
+                <span>작성자: <?= htmlspecialchars($post['author_name'] ?? $post['email'] ?? '익명') ?></span>
                 <span>작성일: <?= date('Y-m-d H:i', strtotime($post['created_at'])) ?></span>
                 <span>조회: <?= $post['view_count'] ?></span>
             </div>
@@ -75,7 +75,7 @@
             <?php foreach ($comments as $comment): ?>
             <div class="comment">
                 <div class="comment-meta">
-                    <strong><?= htmlspecialchars($comment['author_name'] ?? $comment['username'] ?? '익명') ?></strong>
+                    <strong><?= htmlspecialchars($comment['author_name'] ?? $comment['email'] ?? '익명') ?></strong>
                     <span><?= date('Y-m-d H:i', strtotime($comment['created_at'])) ?></span>
                 </div>
                 <div><?= nl2br(htmlspecialchars($comment['content'])) ?></div>

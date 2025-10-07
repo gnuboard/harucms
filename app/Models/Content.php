@@ -18,7 +18,7 @@ class Content
      */
     public function findBySlug(string $slug): ?array
     {
-        $sql = "SELECT c.*, u.username, u.name as author_name
+        $sql = "SELECT c.*, u.email, u.name as author_name
                 FROM contents c
                 LEFT JOIN users u ON c.created_by = u.id
                 WHERE c.slug = ? AND c.status = 'published'";
@@ -31,7 +31,7 @@ class Content
      */
     public function findById(int $id): ?array
     {
-        $sql = "SELECT c.*, u.username, u.name as author_name
+        $sql = "SELECT c.*, u.email, u.name as author_name
                 FROM contents c
                 LEFT JOIN users u ON c.created_by = u.id
                 WHERE c.id = ?";
@@ -47,7 +47,7 @@ class Content
         $where = $status === 'all' ? '' : "WHERE c.status = ?";
         $params = $status === 'all' ? [] : [$status];
 
-        $sql = "SELECT c.*, u.username, u.name as author_name
+        $sql = "SELECT c.*, u.email, u.name as author_name
                 FROM contents c
                 LEFT JOIN users u ON c.created_by = u.id
                 {$where}

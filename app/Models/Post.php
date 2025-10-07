@@ -18,7 +18,7 @@ class Post
      */
     public function getList(int $boardId, int $limit = 20, int $offset = 0): array
     {
-        $sql = "SELECT p.*, u.username, u.name as author_name
+        $sql = "SELECT p.*, u.email, u.name as author_name
                 FROM posts p
                 LEFT JOIN users u ON p.user_id = u.id
                 WHERE p.board_id = ? AND p.status = 'active'
@@ -43,7 +43,7 @@ class Post
      */
     public function findById(int $id): ?array
     {
-        $sql = "SELECT p.*, u.username, u.name as author_name, b.name as board_name, b.title as board_title
+        $sql = "SELECT p.*, u.email, u.name as author_name, b.name as board_name, b.title as board_title
                 FROM posts p
                 LEFT JOIN users u ON p.user_id = u.id
                 LEFT JOIN boards b ON p.board_id = b.id
@@ -141,11 +141,11 @@ class Post
                 $params[] = "%{$keyword}%";
                 break;
             case 'author':
-                $where .= " AND u.username LIKE ?";
+                $where .= " AND u.email LIKE ?";
                 $params[] = "%{$keyword}%";
                 break;
             default: // all
-                $where .= " AND (p.title LIKE ? OR p.content LIKE ? OR u.username LIKE ?)";
+                $where .= " AND (p.title LIKE ? OR p.content LIKE ? OR u.email LIKE ?)";
                 $params[] = "%{$keyword}%";
                 $params[] = "%{$keyword}%";
                 $params[] = "%{$keyword}%";
@@ -155,7 +155,7 @@ class Post
         $params[] = $limit;
         $params[] = $offset;
 
-        $sql = "SELECT p.*, u.username, u.name as author_name
+        $sql = "SELECT p.*, u.email, u.name as author_name
                 FROM posts p
                 LEFT JOIN users u ON p.user_id = u.id
                 WHERE {$where}

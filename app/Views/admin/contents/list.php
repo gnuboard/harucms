@@ -67,7 +67,7 @@
                                 <?= $content['status'] == 'published' ? '공개' : '비공개' ?>
                             </span>
                         </td>
-                        <td><?= htmlspecialchars($content['author_name'] ?? $content['username'] ?? '-') ?></td>
+                        <td><?= htmlspecialchars($content['author_name'] ?? $content['email'] ?? '-') ?></td>
                         <td><?= date('Y-m-d H:i', strtotime($content['updated_at'])) ?></td>
                         <td>
                             <a href="/page/<?= $content['slug'] ?>" class="btn" style="padding: 4px 8px; font-size: 12px; background: #28a745;">보기</a>

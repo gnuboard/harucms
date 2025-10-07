@@ -72,7 +72,7 @@
                                 <?= htmlspecialchars($post['title']) ?>
                             </a>
                         </td>
-                        <td><?= htmlspecialchars($post['author_name'] ?? $post['username'] ?? '익명') ?></td>
+                        <td><?= htmlspecialchars($post['author_name'] ?? $post['email'] ?? '익명') ?></td>
                         <td><?= date('Y-m-d', strtotime($post['created_at'])) ?></td>
                         <td><?= $post['view_count'] ?></td>
                     </tr>
