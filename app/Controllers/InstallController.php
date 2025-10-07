@@ -127,8 +127,10 @@ class InstallController
             // 스키마 실행 (테이블이 없거나 덮어쓰기인 경우)
             if (!$usersTableExists || $overwrite) {
                 $statements = explode(';', $schema);
+                $executedCount = 0;
+                $errors = [];
 
-                foreach ($statements as $statement) {
+                foreach ($statements as $index => $statement) {
                     $statement = trim($statement);
                     // 빈 문자열이나 주석만 있는 줄 스킵
                     if (empty($statement) || preg_match('/^\s*--/', $statement)) {
@@ -137,17 +139,34 @@ class InstallController
 
                     try {
                         $pdo->exec($statement);
+                        $executedCount++;
                     } catch (\PDOException $e) {
-                        // INSERT 실패는 무시 (중복 키 등)
-                        if (strpos($statement, 'INSERT') === false) {
-                            throw new \Exception('스키마 실행 오류: ' . $e->getMessage() . '<br>SQL: ' . htmlspecialchars(substr($statement, 0, 200)));
+                        // INSERT 실패는 경고만 (중복 키 등)
+                        if (strpos(strtoupper($statement), 'INSERT') !== false) {
+                            $errors[] = "Warning [Line $index]: " . $e->getMessage();
+                        } else {
+                            // CREATE/ALTER 등 실패는 치명적 에러
+                            throw new \Exception('스키마 실행 오류 (Line ' . $index . '): ' . $e->getMessage() .
+                                '<br><br>실패한 SQL:<br><code style="background:#f5f5f5;padding:10px;display:block;overflow:auto;">' .
+                                htmlspecialchars(substr($statement, 0, 500)) . '</code>');
                         }
                     }
                 }
+
+                // 스키마 실행 확인
+                if ($executedCount < 5) {
+                    throw new \Exception('스키마 실행이 불완전합니다. 실행된 SQL: ' . $executedCount . '개<br>에러: ' . implode('<br>', $errors));
+                }
+            }
+
+            // users 테이블이 존재하는지 다시 확인
+            $tablesCheck = $pdo->query("SHOW TABLES LIKE 'users'");
+            if ($tablesCheck->rowCount() === 0) {
+                throw new \Exception('users 테이블 생성에 실패했습니다. 스키마 파일을 확인해주세요.');
             }
 
             // 기본 관리자 계정 삭제 후 새 관리자 생성
-            $pdo->exec("DELETE FROM users WHERE email = 'admin@example.com' OR email = '{$adminEmail}'");
+            $pdo->exec("DELETE FROM users WHERE email = 'admin@example.com'");
 
             $hashedPassword = password_hash($adminPassword, PASSWORD_BCRYPT);
             $stmt = $pdo->prepare("INSERT INTO users (email, password, name, is_admin, status) VALUES (?, ?, ?, 1, 1)");
