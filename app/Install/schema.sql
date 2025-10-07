@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS `configs` (
 
 -- 기본 설정값
 INSERT INTO `configs` (`config_key`, `config_value`, `description`) VALUES
-('site_name', '카페24 웹솔루션', '사이트 이름'),
-('site_description', '카페24 호스팅 최적화 PHP CMS', '사이트 설명'),
+('site_name', 'HaruCMS 웹솔루션', '사이트 이름'),
+('site_description', 'HaruCMS 호스팅 최적화 PHP CMS', '사이트 설명'),
 ('posts_per_page', '20', '페이지당 게시글 수'),
 ('use_ckeditor', '1', 'CKEditor 사용 여부');
 

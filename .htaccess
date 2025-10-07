@@ -1,11 +1,11 @@
-# cafe24 루트 폴더의 .htaccess
+# HaruCMS 루트 폴더의 .htaccess
 # www 폴더로 자동 리다이렉트
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
     # www 폴더가 아닌 경우 www로 리다이렉트
-    RewriteCond %{REQUEST_URI} !^/cafe24/www/
+    RewriteCond %{REQUEST_URI} !^/haru/www/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ www/$1 [L]

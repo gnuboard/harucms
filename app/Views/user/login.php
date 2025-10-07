@@ -106,7 +106,7 @@
     <div class="login-container">
         <div class="login-header">
             <h1>로그인</h1>
-            <p>카페24 웹솔루션</p>
+            <p>HaruCMS 웹솔루션</p>
         </div>
 
         <?php

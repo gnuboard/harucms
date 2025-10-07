@@ -22,7 +22,7 @@ Options -Indexes
 # 기본 문서 설정
 DirectoryIndex index.php index.html
 
-# PHP 설정 (카페24 환경에 맞게 조정)
+# PHP 설정
 <IfModule mod_php7.c>
     php_flag display_errors Off
     php_flag log_errors On

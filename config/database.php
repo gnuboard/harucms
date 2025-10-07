@@ -2,7 +2,7 @@
 
 return [
     'host' => 'localhost',
-    'database' => 'cafe24',
+    'database' => 'haru',
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8mb4',

@@ -177,7 +177,7 @@
     <div class="container">
         <div class="welcome-card">
             <h2>환영합니다! 👋</h2>
-            <p>카페24 PHP 웹솔루션 관리자 페이지입니다.</p>
+            <p>HaruCMS PHP 웹솔루션 관리자 페이지입니다.</p>
 
             <div class="admin-info">
                 <p><strong>이메일:</strong> <?php echo htmlspecialchars($_SESSION['email']); ?></p>

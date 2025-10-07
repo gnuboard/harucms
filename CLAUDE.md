@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-카페24 저가형 호스팅 환경에 최적화된 경량 PHP CMS 솔루션. MVC 패턴 기반으로 사용자 관리, 게시판, 컨텐츠 관리 기능을 제공하며 플러그인 시스템을 통한 확장 가능.
+HaruCMS 저가형 호스팅 환경에 최적화된 경량 PHP CMS 솔루션. MVC 패턴 기반으로 사용자 관리, 게시판, 컨텐츠 관리 기능을 제공하며 플러그인 시스템을 통한 확장 가능.
 
 ## Architecture
 
@@ -17,7 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Directory Structure
 
 ```
-cafe24/
+haru/
 ├── www/                   # Public 폴더 (DocumentRoot)
 │   ├── index.php         # 애플리케이션 진입점, 라우팅 정의
 │   └── .htaccess         # mod_rewrite 설정
@@ -72,12 +72,12 @@ $success = $db->execute($sql, $params);  // INSERT/UPDATE/DELETE
 
 ### Database Setup
 ```bash
-mysql -u root cafe24 < database/schema.sql
+mysql -u root haru < database/schema.sql
 ```
 
 ### Testing on XAMPP
-- Apache 시작 후 `http://localhost/cafe24` 접속
-- DB: cafe24, user: root, password: (empty)
+- Apache 시작 후 `http://localhost/haru` 접속
+- DB: haru, user: root, password: (empty)
 
 ### Route Registration
 [www/index.php](www/index.php)에 라우트 추가:
@@ -106,13 +106,13 @@ $router->post('/boards/:name/posts', [PostController::class, 'create']);
 - `plugins/` 디렉토리 구조 설계 필요
 - 훅 시스템으로 핵심 기능 확장 가능하도록 구현
 
-## Cafe24 Hosting Specifics
+## Hosting Specifics
 
 - PHP 7.4+ 환경
 - `www/` 폴더만 웹 접근 가능 (나머지는 상위 디렉토리에 배치)
 - mod_rewrite 기본 활성화
 - 파일 업로드 제한: 20MB (htaccess에서 설정)
-- 세션은 파일 기반 사용
+- 세션은 DB 기반 사용
 
 ## Security Notes
 

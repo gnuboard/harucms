@@ -2,7 +2,7 @@
 
 ## 📋 프로젝트 개요
 
-카페24 저가형 호스팅 환경에서 빠르게 실행 가능한 경량 PHP CMS 솔루션이 완성되었습니다.
+HaruCMS 저가형 호스팅 환경에서 빠르게 실행 가능한 경량 PHP CMS 솔루션이 완성되었습니다.
 
 ## ✅ 구현 완료된 기능
 
@@ -97,7 +97,7 @@
 ## 📁 파일 구조
 
 ```
-cafe24/
+haru/
 ├── www/
 │   ├── index.php              # 애플리케이션 진입점, 라우팅 정의
 │   └── .htaccess              # mod_rewrite 설정
@@ -137,9 +137,9 @@ cafe24/
 
 ### XAMPP 환경
 1. **MySQL 시작** - XAMPP Control Panel에서 MySQL 시작
-2. **DB 생성** - phpMyAdmin에서 `cafe24` 데이터베이스 생성
+2. **DB 생성** - phpMyAdmin에서 `haru` 데이터베이스 생성
 3. **테이블 생성** - `database/schema.sql` Import
-4. **접속** - `http://localhost/cafe24`
+4. **접속** - `http://localhost/haru`
 
 ### 기본 관리자 계정
 - ID: `admin`
@@ -200,7 +200,7 @@ Plugin::doAction('user_login', $userId);
 - Singleton 패턴 (Database)
 - 설정값 캐싱 (Helper::config)
 - 최소한의 외부 의존성
-- 경량 구조 (카페24 저가형 호스팅 최적화)
+- 경량 구조 (저가형 호스팅 최적화)
 
 ## 🔐 보안 체크리스트
 
@@ -239,7 +239,7 @@ Plugin::doAction('user_login', $userId);
 ## 🎯 프로젝트 목표 달성 여부
 
 ### ✅ 완료된 요구사항
-- [x] 카페24 저가형 호스팅에서 빠르게 실행
+- [x] 저가형 호스팅에서 빠르게 실행
 - [x] MySQL 사용
 - [x] DB 정보는 config/database.php에 저장
 - [x] 사용자 관리 기능
