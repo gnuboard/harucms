@@ -110,6 +110,39 @@ class SessionHandler implements SessionHandlerInterface
     }
 
     /**
+     * 세션 타임스탬프 업데이트 (PHP 7.0+)
+     */
+    #[\ReturnTypeWillChange]
+    public function updateTimestamp($id, $data): bool
+    {
+        $sql = "UPDATE sessions SET last_activity = ? WHERE id = ?";
+        try {
+            return $this->db->execute($sql, [time(), $id]);
+        } catch (\Exception $e) {
+            error_log("Session updateTimestamp error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * 세션 유효성 검증 (PHP 7.0+)
+     */
+    #[\ReturnTypeWillChange]
+    public function validateId($id): bool
+    {
+        $sql = "SELECT id FROM sessions WHERE id = ? AND last_activity > ?";
+        $minActivity = time() - $this->lifetime;
+
+        try {
+            $result = $this->db->fetchOne($sql, [$id, $minActivity]);
+            return $result !== null;
+        } catch (\Exception $e) {
+            error_log("Session validateId error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
      * 특정 사용자의 모든 세션 삭제
      */
     public function destroyUserSessions(int $userId): bool
