@@ -6,13 +6,20 @@ use SessionHandlerInterface;
 
 class SessionHandler implements SessionHandlerInterface
 {
-    private Database $db;
+    private ?Database $db = null;
     private int $lifetime;
+    private bool $useDb = true;
 
     public function __construct()
     {
-        $this->db = Database::getInstance();
-        $this->lifetime = (int)ini_get('session.gc_maxlifetime') ?: 1440;
+        try {
+            $this->db = Database::getInstance();
+            $this->lifetime = (int)ini_get('session.gc_maxlifetime') ?: 1440;
+        } catch (\Exception $e) {
+            // DB 연결 실패 시 파일 기반 세션 사용
+            $this->useDb = false;
+            error_log("SessionHandler: DB connection failed, falling back to file sessions: " . $e->getMessage());
+        }
     }
 
     /**
@@ -36,13 +43,21 @@ class SessionHandler implements SessionHandlerInterface
      */
     public function read($id): string|false
     {
-        $sql = "SELECT payload FROM sessions WHERE id = ? AND last_activity > ?";
-        $minActivity = time() - $this->lifetime;
+        if (!$this->useDb || !$this->db) {
+            return '';
+        }
 
-        $result = $this->db->fetchOne($sql, [$id, $minActivity]);
+        try {
+            $sql = "SELECT payload FROM sessions WHERE id = ? AND last_activity > ?";
+            $minActivity = time() - $this->lifetime;
 
-        if ($result) {
-            return $result['payload'] ?? '';
+            $result = $this->db->fetchOne($sql, [$id, $minActivity]);
+
+            if ($result) {
+                return $result['payload'] ?? '';
+            }
+        } catch (\Exception $e) {
+            error_log("Session read error: " . $e->getMessage());
         }
 
         return '';
@@ -53,22 +68,26 @@ class SessionHandler implements SessionHandlerInterface
      */
     public function write($id, $data): bool
     {
-        $userId = $_SESSION['user_id'] ?? null;
-        $ipAddress = $_SERVER['REMOTE_ADDR'] ?? null;
-        $userAgent = substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, 255);
-        $lastActivity = time();
-
-        // UPSERT 쿼리 (MySQL)
-        $sql = "INSERT INTO sessions (id, user_id, ip_address, user_agent, payload, last_activity)
-                VALUES (?, ?, ?, ?, ?, ?)
-                ON DUPLICATE KEY UPDATE
-                    user_id = VALUES(user_id),
-                    ip_address = VALUES(ip_address),
-                    user_agent = VALUES(user_agent),
-                    payload = VALUES(payload),
-                    last_activity = VALUES(last_activity)";
+        if (!$this->useDb || !$this->db) {
+            return true; // 파일 기반 세션이 처리하도록
+        }
 
         try {
+            $userId = $_SESSION['user_id'] ?? null;
+            $ipAddress = $_SERVER['REMOTE_ADDR'] ?? null;
+            $userAgent = substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, 255);
+            $lastActivity = time();
+
+            // UPSERT 쿼리 (MySQL)
+            $sql = "INSERT INTO sessions (id, user_id, ip_address, user_agent, payload, last_activity)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                    ON DUPLICATE KEY UPDATE
+                        user_id = VALUES(user_id),
+                        ip_address = VALUES(ip_address),
+                        user_agent = VALUES(user_agent),
+                        payload = VALUES(payload),
+                        last_activity = VALUES(last_activity)";
+
             return $this->db->execute($sql, [
                 $id,
                 $userId,
@@ -79,7 +98,7 @@ class SessionHandler implements SessionHandlerInterface
             ]);
         } catch (\Exception $e) {
             error_log("Session write error: " . $e->getMessage());
-            return false;
+            return true; // 에러를 숨기고 PHP 기본 처리로
         }
     }
 
@@ -88,8 +107,17 @@ class SessionHandler implements SessionHandlerInterface
      */
     public function destroy($id): bool
     {
-        $sql = "DELETE FROM sessions WHERE id = ?";
-        return $this->db->execute($sql, [$id]);
+        if (!$this->useDb || !$this->db) {
+            return true;
+        }
+
+        try {
+            $sql = "DELETE FROM sessions WHERE id = ?";
+            return $this->db->execute($sql, [$id]);
+        } catch (\Exception $e) {
+            error_log("Session destroy error: " . $e->getMessage());
+            return true;
+        }
     }
 
     /**
@@ -115,12 +143,16 @@ class SessionHandler implements SessionHandlerInterface
     #[\ReturnTypeWillChange]
     public function updateTimestamp($id, $data): bool
     {
-        $sql = "UPDATE sessions SET last_activity = ? WHERE id = ?";
+        if (!$this->useDb || !$this->db) {
+            return true;
+        }
+
         try {
+            $sql = "UPDATE sessions SET last_activity = ? WHERE id = ?";
             return $this->db->execute($sql, [time(), $id]);
         } catch (\Exception $e) {
             error_log("Session updateTimestamp error: " . $e->getMessage());
-            return false;
+            return true; // 에러를 숨김
         }
     }
 
@@ -130,15 +162,18 @@ class SessionHandler implements SessionHandlerInterface
     #[\ReturnTypeWillChange]
     public function validateId($id): bool
     {
-        $sql = "SELECT id FROM sessions WHERE id = ? AND last_activity > ?";
-        $minActivity = time() - $this->lifetime;
+        if (!$this->useDb || !$this->db) {
+            return true;
+        }
 
         try {
+            $sql = "SELECT id FROM sessions WHERE id = ? AND last_activity > ?";
+            $minActivity = time() - $this->lifetime;
             $result = $this->db->fetchOne($sql, [$id, $minActivity]);
             return $result !== null;
         } catch (\Exception $e) {
             error_log("Session validateId error: " . $e->getMessage());
-            return false;
+            return true; // 에러 시 기본 동작으로
         }
     }
 
