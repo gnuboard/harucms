@@ -124,16 +124,24 @@ class InstallController
                 }
             }
 
-            // 스키마 실행 (테이블이 없는 경우에만)
-            if (!$usersTableExists) {
-                $statements = array_filter(
-                    array_map('trim', explode(';', $schema)),
-                    fn($stmt) => !empty($stmt) && !preg_match('/^--/', $stmt)
-                );
+            // 스키마 실행 (테이블이 없거나 덮어쓰기인 경우)
+            if (!$usersTableExists || $overwrite) {
+                $statements = explode(';', $schema);
 
                 foreach ($statements as $statement) {
-                    if (trim($statement)) {
+                    $statement = trim($statement);
+                    // 빈 문자열이나 주석만 있는 줄 스킵
+                    if (empty($statement) || preg_match('/^\s*--/', $statement)) {
+                        continue;
+                    }
+
+                    try {
                         $pdo->exec($statement);
+                    } catch (\PDOException $e) {
+                        // INSERT 실패는 무시 (중복 키 등)
+                        if (strpos($statement, 'INSERT') === false) {
+                            throw new \Exception('스키마 실행 오류: ' . $e->getMessage() . '<br>SQL: ' . htmlspecialchars(substr($statement, 0, 200)));
+                        }
                     }
                 }
             }

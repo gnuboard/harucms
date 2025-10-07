@@ -217,7 +217,7 @@
                     SOFTWARE.</p>
                 </div>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="agree_license" name="agree_license" required>
+                    <input type="checkbox" id="agree_license" name="agree_license" <?= !empty($oldInput['agree_license']) ? 'checked' : '' ?> required>
                     <label for="agree_license">위 라이센스에 동의합니다 *</label>
                 </div>
             </div>
