@@ -59,14 +59,19 @@ class Router
 
                 $callback = $route['callback'];
 
-                if (is_array($callback)) {
-                    // [ControllerClass, 'method'] 형식
-                    $controller = new $callback[0]();
-                    $method = $callback[1];
-                    echo $controller->$method($params);
-                } else {
-                    // 익명 함수
-                    echo $callback($params);
+                try {
+                    if (is_array($callback)) {
+                        // [ControllerClass, 'method'] 형식
+                        $controller = new $callback[0]();
+                        $method = $callback[1];
+                        echo $controller->$method($params);
+                    } else {
+                        // 익명 함수
+                        echo $callback($params);
+                    }
+                } catch (\Exception $e) {
+                    // Stack Trace 없이 에러 메시지만 표시
+                    echo $e->getMessage();
                 }
                 return;
             }

@@ -207,7 +207,7 @@ class InstallController
                 '데이터베이스: ' . $dbName . '<br>' .
                 '사용자: ' . $dbUser);
         } catch (\Exception $e) {
-            $this->redirectWithError('설치 오류: ' . $e->getMessage() . '<br><br>Stack Trace:<br>' . nl2br($e->getTraceAsString()));
+            $this->redirectWithError('설치 오류: ' . $e->getMessage());
         }
     }
 

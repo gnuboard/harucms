@@ -1,12 +1,5 @@
-# 데이터베이스 설정 파일 (보안)
-data/config/database.php
-
-# 업로드 파일
-data/uploads/*
-!data/uploads/.gitkeep
-
-# 로그 파일
-data/logs/*.log
+# database config, 사용자 파일등
+data/
 
 # 임시 파일
 *.tmp

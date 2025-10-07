@@ -1,3 +1,20 @@
+-- 외래 키 체크 비활성화
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- 기존 테이블 삭제 (기존 데이터 덮어쓰기 옵션 사용 시)
+DROP TABLE IF EXISTS `sessions`;
+DROP TABLE IF EXISTS `plugins`;
+DROP TABLE IF EXISTS `attachments`;
+DROP TABLE IF EXISTS `comments`;
+DROP TABLE IF EXISTS `posts`;
+DROP TABLE IF EXISTS `boards`;
+DROP TABLE IF EXISTS `contents`;
+DROP TABLE IF EXISTS `configs`;
+DROP TABLE IF EXISTS `users`;
+
+-- 외래 키 체크 재활성화
+SET FOREIGN_KEY_CHECKS = 1;
+
 -- 사용자 테이블 (관리자 포함, 이메일을 아이디로 사용)
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
