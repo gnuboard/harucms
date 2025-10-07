@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafe24 CMS 설치</title>
+    <title>CMS 설치</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -164,7 +164,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>🚀 Cafe24 CMS 설치</h1>
+        <h1>🚀 CMS 설치</h1>
         <p class="subtitle">빠르고 가벼운 PHP 기반 CMS 솔루션</p>
 
         <?php if (!empty($error)): ?>
@@ -196,7 +196,7 @@
                 <div class="section-title">📜 라이센스</div>
                 <div class="license-box">
                     <h3>MIT License</h3>
-                    <p>Copyright (c) 2025 Cafe24 CMS</p>
+                    <p>Copyright (c) 2025 CMS</p>
                     <br>
                     <p>Permission is hereby granted, free of charge, to any person obtaining a copy
                     of this software and associated documentation files (the "Software"), to deal
@@ -232,7 +232,7 @@
                 </div>
                 <div class="form-group">
                     <label for="db_name">데이터베이스명 *</label>
-                    <input type="text" id="db_name" name="db_name" value="<?= htmlspecialchars($oldInput['db_name'] ?? 'cafe24') ?>" required>
+                    <input type="text" id="db_name" name="db_name" value="<?= htmlspecialchars($oldInput['db_name'] ?? 'userdb') ?>" required>
                     <div class="help-text">데이터베이스가 없으면 자동으로 생성됩니다</div>
                 </div>
                 <div class="form-group">
