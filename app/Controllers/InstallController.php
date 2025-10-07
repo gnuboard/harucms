@@ -96,17 +96,12 @@ class InstallController
 
             $schema = file_get_contents($schemaPath);
 
-            // 덮어쓰기 옵션에 따라 처리
-            if (!$overwrite) {
-                // 관리자 이메일 중복 확인
-                $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM users WHERE email = ? AND is_admin = 1");
-                $stmt->execute([$adminEmail]);
-                $result = $stmt->fetch();
+            // users 테이블이 존재하는지 확인
+            $tablesResult = $pdo->query("SHOW TABLES LIKE 'users'");
+            $usersTableExists = $tablesResult->rowCount() > 0;
 
-                if ($result && $result['count'] > 0) {
-                    $this->redirectWithError('이미 동일한 이메일의 관리자 계정이 존재합니다. 덮어쓰기를 선택하거나 다른 이메일을 사용해주세요.');
-                }
-            } else {
+            // 덮어쓰기 옵션에 따라 처리
+            if ($overwrite) {
                 // 덮어쓰기: 기존 테이블 삭제
                 $pdo->exec("DROP TABLE IF EXISTS sessions");
                 $pdo->exec("DROP TABLE IF EXISTS plugins");
@@ -117,22 +112,34 @@ class InstallController
                 $pdo->exec("DROP TABLE IF EXISTS contents");
                 $pdo->exec("DROP TABLE IF EXISTS configs");
                 $pdo->exec("DROP TABLE IF EXISTS users");
+                $usersTableExists = false;
+            } elseif ($usersTableExists) {
+                // 덮어쓰기 안함 + 테이블 존재: 관리자 이메일 중복 확인
+                $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM users WHERE email = ? AND is_admin = 1");
+                $stmt->execute([$adminEmail]);
+                $result = $stmt->fetch();
+
+                if ($result && $result['count'] > 0) {
+                    $this->redirectWithError('이미 동일한 이메일의 관리자 계정이 존재합니다. 덮어쓰기를 선택하거나 다른 이메일을 사용해주세요.');
+                }
             }
 
-            // 스키마 실행
-            $statements = array_filter(
-                array_map('trim', explode(';', $schema)),
-                fn($stmt) => !empty($stmt) && !preg_match('/^--/', $stmt)
-            );
+            // 스키마 실행 (테이블이 없는 경우에만)
+            if (!$usersTableExists) {
+                $statements = array_filter(
+                    array_map('trim', explode(';', $schema)),
+                    fn($stmt) => !empty($stmt) && !preg_match('/^--/', $stmt)
+                );
 
-            foreach ($statements as $statement) {
-                if (trim($statement)) {
-                    $pdo->exec($statement);
+                foreach ($statements as $statement) {
+                    if (trim($statement)) {
+                        $pdo->exec($statement);
+                    }
                 }
             }
 
             // 기본 관리자 계정 삭제 후 새 관리자 생성
-            $pdo->exec("DELETE FROM users WHERE email = 'admin@example.com'");
+            $pdo->exec("DELETE FROM users WHERE email = 'admin@example.com' OR email = '{$adminEmail}'");
 
             $hashedPassword = password_hash($adminPassword, PASSWORD_BCRYPT);
             $stmt = $pdo->prepare("INSERT INTO users (email, password, name, is_admin, status) VALUES (?, ?, ?, 1, 1)");
