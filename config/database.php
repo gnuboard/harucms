@@ -2,7 +2,7 @@
 
 return [
     'host' => 'localhost',
-    'database' => 'haru',
+    'database' => 'harucms',
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8mb4',

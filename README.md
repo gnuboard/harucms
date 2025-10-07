@@ -38,7 +38,7 @@ HaruCMS는 복잡한 설정 없이 **단 몇 분 만에 설치**하고, **하루
 - CSS만 수정해도 완전히 다른 느낌
 - 개발 지식 없어도 기본 운영 가능
 
-## 🚀 빠른 시작 (5분 설치)
+## 🚀 빠른 시작 (10분 설치)
 
 ### 1단계: 시스템 요구사항 확인
 - PHP 7.4 이상
@@ -71,9 +71,9 @@ DocumentRoot를 `www` 폴더로 지정해야 합니다.
 ```apache
 <VirtualHost *:80>
     ServerName example.com
-    DocumentRoot /var/www/html/haru/www
+    DocumentRoot /var/www/html/harucms/www
 
-    <Directory /var/www/html/haru/www>
+    <Directory /var/www/html/harucms/www>
         AllowOverride All
         Require all granted
     </Directory>
@@ -88,8 +88,8 @@ DocumentRoot를 `www` 폴더로 지정해야 합니다.
 `httpd.conf` 또는 `httpd-vhosts.conf` 파일에서:
 
 ```apache
-DocumentRoot "C:/xampp/htdocs/haru/www"
-<Directory "C:/xampp/htdocs/haru/www">
+DocumentRoot "C:/xampp/htdocs/harucms/www"
+<Directory "C:/xampp/htdocs/harucms/www">
     Options Indexes FollowSymLinks
     AllowOverride All
     Require all granted
@@ -118,9 +118,9 @@ DocumentRoot "C:/xampp/htdocs/haru/www"
 HaruCMS를 사용하면 아침에 설치해서 저녁에 운영을 시작할 수 있습니다.
 
 ### 오전: 설치 및 기본 설정 (1-2시간)
-1. ⏱️ **0-5분**: 파일 업로드 및 Apache 설정
-2. ⏱️ **5-10분**: 웹 설치 마법사 실행
-3. ⏱️ **10-30분**: 사이트 이름, 로고 등 기본 정보 설정
+1. ⏱️ **0-10분**: 파일 업로드 및 Apache 설정
+2. ⏱️ **10-20분**: 웹 설치 마법사 실행
+3. ⏱️ **20-30분**: 사이트 이름, 로고 등 기본 정보 설정
 4. ⏱️ **30분-1시간**: 게시판 추가 및 권한 설정
 
 ### 오후: 컨텐츠 작성 (2-4시간)

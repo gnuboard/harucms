@@ -47,7 +47,7 @@ class InstallController
 
         // 입력값 받기
         $dbHost = $_POST['db_host'] ?? 'localhost';
-        $dbName = $_POST['db_name'] ?? 'haru';
+        $dbName = $_POST['db_name'] ?? 'harucms';
         $dbUser = $_POST['db_user'] ?? 'root';
         $dbPass = $_POST['db_password'] ?? '';
         $adminEmail = $_POST['admin_email'] ?? '';

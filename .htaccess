@@ -5,7 +5,7 @@
     RewriteEngine On
 
     # www 폴더가 아닌 경우 www로 리다이렉트
-    RewriteCond %{REQUEST_URI} !^/haru/www/
+    RewriteCond %{REQUEST_URI} !^/harucms/www/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ www/$1 [L]

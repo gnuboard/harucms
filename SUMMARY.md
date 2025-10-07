@@ -97,7 +97,7 @@ HaruCMS 저가형 호스팅 환경에서 빠르게 실행 가능한 경량 PHP C
 ## 📁 파일 구조
 
 ```
-haru/
+harucms/
 ├── www/
 │   ├── index.php              # 애플리케이션 진입점, 라우팅 정의
 │   └── .htaccess              # mod_rewrite 설정
@@ -137,9 +137,9 @@ haru/
 
 ### XAMPP 환경
 1. **MySQL 시작** - XAMPP Control Panel에서 MySQL 시작
-2. **DB 생성** - phpMyAdmin에서 `haru` 데이터베이스 생성
+2. **DB 생성** - phpMyAdmin에서 `harucms` 데이터베이스 생성
 3. **테이블 생성** - `database/schema.sql` Import
-4. **접속** - `http://localhost/haru`
+4. **접속** - `http://localhost/harucms`
 
 ### 기본 관리자 계정
 - ID: `admin`

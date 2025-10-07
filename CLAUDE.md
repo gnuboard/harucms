@@ -17,7 +17,7 @@ HaruCMS 저가형 호스팅 환경에 최적화된 경량 PHP CMS 솔루션. MVC
 ### Directory Structure
 
 ```
-haru/
+harucms/
 ├── www/                   # Public 폴더 (DocumentRoot)
 │   ├── index.php         # 애플리케이션 진입점, 라우팅 정의
 │   └── .htaccess         # mod_rewrite 설정
@@ -72,12 +72,12 @@ $success = $db->execute($sql, $params);  // INSERT/UPDATE/DELETE
 
 ### Database Setup
 ```bash
-mysql -u root haru < database/schema.sql
+mysql -u root harucms < database/schema.sql
 ```
 
 ### Testing on XAMPP
-- Apache 시작 후 `http://localhost/haru` 접속
-- DB: haru, user: root, password: (empty)
+- Apache 시작 후 `http://localhost/harucms` 접속
+- DB: harucms, user: root, password: (empty)
 
 ### Route Registration
 [www/index.php](www/index.php)에 라우트 추가:
@@ -121,3 +121,10 @@ $router->post('/boards/:name/posts', [PostController::class, 'create']);
 - 운영 환경에서는 `display_errors Off` 설정
 - htaccess로 `.env`, `.sql`, `.log` 파일 접근 차단
 - XSS 방지: 출력 시 `htmlspecialchars()` 사용
+
+## Git Workflow
+
+### Auto-commit on Session End
+- 세션 종료 시 자동으로 커밋 생성
+- 커밋 메시지 앞에 매번 다른 이모지 자동 추가
+- 이모지 목록: 🔧 📝 ✨ 🐛 🚀 💄 ♻️ 🔥 ⚡ 🎨 📦 🔒 🌐 🎯 💡 🧹 📚 🔨 🎉 ⬆️
