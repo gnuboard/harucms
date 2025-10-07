@@ -95,5 +95,16 @@
             </form>
         </div>
     </div>
+
+    <script src="/assets/ckeditor/ckeditor.js"></script>
+    <script>
+        // CKEditor가 로드되어 있으면 적용
+        if (typeof CKEDITOR !== 'undefined') {
+            CKEDITOR.replace('content', {
+                height: 400,
+                filebrowserUploadUrl: '/upload'
+            });
+        }
+    </script>
 </body>
 </html>
