@@ -227,21 +227,21 @@
                 <div class="section-title">🗄️ MySQL 데이터베이스 정보</div>
                 <div class="form-group">
                     <label for="db_host">호스트 *</label>
-                    <input type="text" id="db_host" name="db_host" value="localhost" required>
+                    <input type="text" id="db_host" name="db_host" value="<?= htmlspecialchars($oldInput['db_host'] ?? 'localhost') ?>" required>
                     <div class="help-text">일반적으로 localhost를 사용합니다</div>
                 </div>
                 <div class="form-group">
                     <label for="db_name">데이터베이스명 *</label>
-                    <input type="text" id="db_name" name="db_name" value="cafe24" required>
+                    <input type="text" id="db_name" name="db_name" value="<?= htmlspecialchars($oldInput['db_name'] ?? 'cafe24') ?>" required>
                     <div class="help-text">데이터베이스가 없으면 자동으로 생성됩니다</div>
                 </div>
                 <div class="form-group">
                     <label for="db_user">사용자명 *</label>
-                    <input type="text" id="db_user" name="db_user" value="root" required>
+                    <input type="text" id="db_user" name="db_user" value="<?= htmlspecialchars($oldInput['db_user'] ?? 'root') ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="db_password">비밀번호</label>
-                    <input type="password" id="db_password" name="db_password">
+                    <input type="password" id="db_password" name="db_password" value="<?= htmlspecialchars($oldInput['db_password'] ?? '') ?>">
                     <div class="help-text">비밀번호가 없으면 비워두세요</div>
                 </div>
             </div>
@@ -251,17 +251,17 @@
                 <div class="section-title">👤 관리자 계정 정보</div>
                 <div class="form-group">
                     <label for="admin_email">관리자 이메일 *</label>
-                    <input type="email" id="admin_email" name="admin_email" required placeholder="admin@example.com">
+                    <input type="email" id="admin_email" name="admin_email" value="<?= htmlspecialchars($oldInput['admin_email'] ?? '') ?>" required placeholder="admin@example.com">
                     <div class="help-text">로그인 ID로 사용됩니다</div>
                 </div>
                 <div class="form-group">
                     <label for="admin_password">관리자 비밀번호 *</label>
-                    <input type="password" id="admin_password" name="admin_password" required minlength="6">
+                    <input type="password" id="admin_password" name="admin_password" value="<?= htmlspecialchars($oldInput['admin_password'] ?? '') ?>" required minlength="6">
                     <div class="help-text">최소 6자 이상</div>
                 </div>
                 <div class="form-group">
                     <label for="admin_name">관리자 이름</label>
-                    <input type="text" id="admin_name" name="admin_name" value="관리자">
+                    <input type="text" id="admin_name" name="admin_name" value="<?= htmlspecialchars($oldInput['admin_name'] ?? '관리자') ?>">
                 </div>
             </div>
 
@@ -269,7 +269,7 @@
             <div class="section">
                 <div class="section-title">⚙️ 설치 옵션</div>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="overwrite_data" name="overwrite_data" value="1">
+                    <input type="checkbox" id="overwrite_data" name="overwrite_data" value="1" <?= !empty($oldInput['overwrite_data']) ? 'checked' : '' ?>>
                     <label for="overwrite_data">기존 데이터 덮어쓰기</label>
                 </div>
                 <div class="warning-box" id="overwriteWarning" style="display: none;">
@@ -312,6 +312,11 @@
 
         // 초기 상태 설정
         installBtn.disabled = !agreeCheckbox.checked;
+
+        // 페이지 로드 시 덮어쓰기 체크박스 상태에 따라 경고 표시
+        if (overwriteCheckbox.checked) {
+            overwriteWarning.style.display = 'block';
+        }
     </script>
 </body>
 </html>

@@ -23,7 +23,11 @@ class InstallController
         $error = $_GET['error'] ?? null;
         $success = $_GET['success'] ?? null;
 
-        Helper::view('install/index', compact('error', 'success'));
+        // 이전 입력값 가져오기 (세션에서)
+        $oldInput = $_SESSION['_old_input'] ?? [];
+        unset($_SESSION['_old_input']);
+
+        Helper::view('install/index', compact('error', 'success', 'oldInput'));
     }
 
     /**
@@ -179,6 +183,9 @@ class InstallController
      */
     private function redirectWithError(string $message): void
     {
+        // 입력값 세션에 저장
+        $_SESSION['_old_input'] = $_POST;
+
         header('Location: /install?error=' . urlencode($message));
         exit;
     }
