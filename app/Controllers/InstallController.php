@@ -13,11 +13,17 @@ class InstallController
     {
         // 이미 설치되어 있는지 확인
         if ($this->isInstalled()) {
-            Helper::flash('error', '이미 설치가 완료되었습니다.');
-            Helper::redirect('/');
+            echo '<h1>이미 설치가 완료되었습니다</h1>';
+            echo '<p>data/config/database.php 파일을 삭제하면 재설치할 수 있습니다.</p>';
+            echo '<a href="/">홈으로 이동</a>';
+            exit;
         }
 
-        Helper::view('install/index');
+        // URL 파라미터로 전달된 에러 메시지
+        $error = $_GET['error'] ?? null;
+        $success = $_GET['success'] ?? null;
+
+        Helper::view('install/index', compact('error', 'success'));
     }
 
     /**
@@ -32,8 +38,7 @@ class InstallController
 
         // 라이센스 동의 확인
         if (empty($_POST['agree_license'])) {
-            Helper::flash('error', '라이센스에 동의해야 설치를 진행할 수 있습니다.');
-            Helper::redirect('/install');
+            $this->redirectWithError('라이센스에 동의해야 설치를 진행할 수 있습니다.');
         }
 
         // 입력값 받기
@@ -48,23 +53,19 @@ class InstallController
 
         // 입력값 검증
         if (empty($dbHost) || empty($dbName) || empty($dbUser)) {
-            Helper::flash('error', '데이터베이스 정보를 모두 입력해주세요.');
-            Helper::redirect('/install');
+            $this->redirectWithError('데이터베이스 정보를 모두 입력해주세요.');
         }
 
         if (empty($adminEmail) || empty($adminPassword)) {
-            Helper::flash('error', '관리자 이메일과 비밀번호를 입력해주세요.');
-            Helper::redirect('/install');
+            $this->redirectWithError('관리자 이메일과 비밀번호를 입력해주세요.');
         }
 
         if (!filter_var($adminEmail, FILTER_VALIDATE_EMAIL)) {
-            Helper::flash('error', '올바른 이메일 형식을 입력해주세요.');
-            Helper::redirect('/install');
+            $this->redirectWithError('올바른 이메일 형식을 입력해주세요.');
         }
 
         if (strlen($adminPassword) < 6) {
-            Helper::flash('error', '비밀번호는 최소 6자 이상이어야 합니다.');
-            Helper::redirect('/install');
+            $this->redirectWithError('비밀번호는 최소 6자 이상이어야 합니다.');
         }
 
         try {
@@ -99,8 +100,7 @@ class InstallController
                 $result = $stmt->fetch();
 
                 if ($result && $result['count'] > 0) {
-                    Helper::flash('error', '이미 동일한 이메일의 관리자 계정이 존재합니다. 덮어쓰기를 선택하거나 다른 이메일을 사용해주세요.');
-                    Helper::redirect('/install');
+                    $this->redirectWithError('이미 동일한 이메일의 관리자 계정이 존재합니다. 덮어쓰기를 선택하거나 다른 이메일을 사용해주세요.');
                 }
             } else {
                 // 덮어쓰기: 기존 테이블 삭제
@@ -153,15 +153,15 @@ class InstallController
                 throw new \Exception('설정 파일 생성에 실패했습니다. data/config 폴더에 쓰기 권한이 있는지 확인해주세요.');
             }
 
-            Helper::flash('success', '설치가 완료되었습니다! 관리자 계정으로 로그인하세요.');
-            Helper::redirect('/admin/login');
+            $this->redirectWithSuccess('설치가 완료되었습니다! 관리자 계정으로 로그인하세요.', '/admin/login');
 
         } catch (\PDOException $e) {
-            Helper::flash('error', 'DB 연결 오류: ' . $e->getMessage());
-            Helper::redirect('/install');
+            $this->redirectWithError('DB 연결 오류: ' . $e->getMessage() . '<br><br>상세 정보:<br>' .
+                '호스트: ' . $dbHost . '<br>' .
+                '데이터베이스: ' . $dbName . '<br>' .
+                '사용자: ' . $dbUser);
         } catch (\Exception $e) {
-            Helper::flash('error', '설치 오류: ' . $e->getMessage());
-            Helper::redirect('/install');
+            $this->redirectWithError('설치 오류: ' . $e->getMessage() . '<br><br>Stack Trace:<br>' . nl2br($e->getTraceAsString()));
         }
     }
 
@@ -172,5 +172,23 @@ class InstallController
     {
         $configPath = BASE_PATH . '/data/config/database.php';
         return file_exists($configPath);
+    }
+
+    /**
+     * 에러 메시지와 함께 리다이렉트
+     */
+    private function redirectWithError(string $message): void
+    {
+        header('Location: /install?error=' . urlencode($message));
+        exit;
+    }
+
+    /**
+     * 성공 메시지와 함께 리다이렉트
+     */
+    private function redirectWithSuccess(string $message, string $url = '/install'): void
+    {
+        header('Location: ' . $url . '?success=' . urlencode($message));
+        exit;
     }
 }

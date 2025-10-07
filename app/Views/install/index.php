@@ -130,19 +130,26 @@
             cursor: not-allowed;
         }
         .alert {
-            padding: 12px;
+            padding: 15px;
             border-radius: 5px;
             margin-bottom: 20px;
+            line-height: 1.6;
         }
         .alert-error {
             background: #f8d7da;
             color: #721c24;
-            border: 1px solid #f5c6cb;
+            border: 2px solid #f5c6cb;
+            font-size: 14px;
+        }
+        .alert-error strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 8px;
         }
         .alert-success {
             background: #d4edda;
             color: #155724;
-            border: 1px solid #c3e6cb;
+            border: 2px solid #c3e6cb;
         }
         .warning-box {
             background: #fff3cd;
@@ -159,6 +166,20 @@
     <div class="container">
         <h1>🚀 Cafe24 CMS 설치</h1>
         <p class="subtitle">빠르고 가벼운 PHP 기반 CMS 솔루션</p>
+
+        <?php if (!empty($error)): ?>
+            <div class="alert alert-error">
+                <strong>⚠️ 설치 실패</strong><br>
+                <?= $error ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($success)): ?>
+            <div class="alert alert-success">
+                <strong>✅ 성공</strong><br>
+                <?= htmlspecialchars($success) ?>
+            </div>
+        <?php endif; ?>
 
         <?php if (isset($_SESSION['flash'])): ?>
             <?php foreach ($_SESSION['flash'] as $type => $message): ?>
