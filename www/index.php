@@ -92,6 +92,7 @@ $router->post('/comments/:comment_id/delete', [BoardController::class, 'deleteCo
 
 // 컨텐츠 페이지 라우트
 $router->get('/page/:slug', [ContentController::class, 'show']);
+$router->get('/:slug', [ContentController::class, 'show']);
 
 // 관리자 라우트
 $router->get('/admin', [AdminController::class, 'dashboard']);

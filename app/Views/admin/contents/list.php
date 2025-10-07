@@ -71,7 +71,7 @@
                         <td><?= htmlspecialchars($content['author_name'] ?? $content['email'] ?? '-') ?></td>
                         <td><?= date('Y-m-d H:i', strtotime($content['updated_at'])) ?></td>
                         <td>
-                            <a href="/page/<?= $content['slug'] ?>" class="btn" style="padding: 4px 8px; font-size: 12px; background: #28a745;">보기</a>
+                            <a href="/<?= $content['slug'] ?>" class="btn" style="padding: 4px 8px; font-size: 12px; background: #28a745;">보기</a>
                             <a href="/admin/contents/<?= $content['id'] ?>/edit" class="btn" style="padding: 4px 8px; font-size: 12px;">수정</a>
                         </td>
                     </tr>
