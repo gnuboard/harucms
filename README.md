@@ -128,8 +128,9 @@ XAMPP 사용 시:
 - **comments**: 댓글
 - **contents**: 정적 컨텐츠 페이지
 - **configs**: 시스템 설정
-- **files**: 파일 첨부
+- **attachments**: 파일 첨부
 - **plugins**: 플러그인 정보
+- **sessions**: 세션 정보 (DB 기반 세션 관리)
 
 ## 개발 가이드
 

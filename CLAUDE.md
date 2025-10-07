@@ -41,7 +41,9 @@ cafe24/
 - `boards`: 게시판 설정
 - `posts`: 게시글
 - `comments`: 댓글
-- `files`: 파일 첨부
+- `attachments`: 파일 첨부
+- `plugins`: 플러그인 설정
+- `sessions`: 세션 정보 (DB 기반 세션 관리)
 
 **구현 완료:** users 테이블에서 is_admin 필드로 관리자 구분, 이메일을 아이디로 사용
 

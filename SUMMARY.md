@@ -13,9 +13,9 @@
 - **comments** - 댓글
 - **contents** - 정적 페이지 컨텐츠
 - **configs** - 시스템 설정
-- **files** - 파일 첨부
+- **attachments** - 파일 첨부
 - **plugins** - 플러그인 정보
-- **sessions** - 세션 관리
+- **sessions** - 세션 관리 (DB 기반)
 
 ### 2. Core 시스템
 - **Router** - RESTful 라우팅, 동적 파라미터 지원 (:id 패턴)

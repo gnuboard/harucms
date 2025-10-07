@@ -78,9 +78,9 @@ return [
 - ✅ `comments` - 댓글
 - ✅ `contents` - 컨텐츠 페이지
 - ✅ `configs` - 시스템 설정
-- ✅ `files` - 파일 첨부
+- ✅ `attachments` - 파일 첨부
 - ✅ `plugins` - 플러그인
-- ✅ `sessions` - 세션 (선택사항)
+- ✅ `sessions` - 세션 (DB 기반)
 
 ## 3. 초기 데이터 확인
 
