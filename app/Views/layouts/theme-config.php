@@ -1,6 +1,10 @@
 <!-- Tailwind CSS (Local) -->
 <script src="/assets/js/tailwind.js"></script>
 
+<!-- Preline UI -->
+<script src="https://cdn.jsdelivr.net/npm/preline@3.2.3/dist/preline.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline@3.2.3/src/plugins/accordion/variants.min.css">
+
 <style>
     * {
         margin: 0;
