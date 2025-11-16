@@ -147,16 +147,8 @@ ob_start();
     <!-- 현재 사용자 정보 -->
     <div class="user-info">
         <div class="user-info-item">
-            <label>이메일</label>
-            <span><?= htmlspecialchars($user['email'] ?? '') ?></span>
-        </div>
-        <div class="user-info-item">
-            <label>이름</label>
-            <span><?= htmlspecialchars($user['name'] ?? '') ?></span>
-        </div>
-        <div class="user-info-item">
             <label>가입일</label>
-            <span><?= Helper::formatDate($user['created_at'] ?? '', 'Y-m-d') ?></span>
+            <span><?= Helper::formatDate($user['created_at'] ?? '', 'Y-m-d H:i:s') ?></span>
         </div>
         <div class="user-info-item">
             <label>마지막 로그인</label>
@@ -174,8 +166,8 @@ ob_start();
         </div>
 
         <div class="form-group">
-            <label for="name">이름</label>
-            <input type="text" id="name" name="name" value="<?= htmlspecialchars($user['name'] ?? '') ?>" placeholder="새 이름 입력">
+            <label for="nickname">닉네임</label>
+            <input type="text" id="nickname" name="nickname" value="<?= htmlspecialchars($user['nickname'] ?? '') ?>" placeholder="새 닉네임 입력">
             <small>2자 이상 20자 이하 (변경하지 않으려면 비워두세요)</small>
         </div>
 

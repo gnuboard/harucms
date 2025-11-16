@@ -210,11 +210,11 @@ class Helper
     }
 
     /**
-     * 현재 사용자 이름 반환
+     * 현재 사용자 닉네임 반환
      */
-    public static function userName(): ?string
+    public static function userNickname(): ?string
     {
-        return $_SESSION['name'] ?? null;
+        return $_SESSION['nickname'] ?? null;
     }
 
     /**

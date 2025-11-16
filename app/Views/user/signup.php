@@ -59,11 +59,11 @@ ob_start();
         </div>
 
         <div class="form-group">
-            <label for="name">이름 (선택사항)</label>
+            <label for="nickname">닉네임 (선택사항)</label>
             <input
                 type="text"
-                id="name"
-                name="name"
+                id="nickname"
+                name="nickname"
                 placeholder="홍길동"
                 class="w-full"
             >

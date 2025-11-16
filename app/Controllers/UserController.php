@@ -50,7 +50,7 @@ class UserController
         if ($user) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
-            $_SESSION['name'] = $user['name'];
+            $_SESSION['nickname'] = $user['nickname'];
             $_SESSION['is_admin'] = $user['is_admin'];
 
             Helper::flash('success', '로그인되었습니다.');
@@ -96,7 +96,7 @@ class UserController
         $email = trim($_POST['email'] ?? '');
         $password = $_POST['password'] ?? '';
         $passwordConfirm = $_POST['password_confirm'] ?? '';
-        $name = trim($_POST['name'] ?? '');
+        $nickname = trim($_POST['nickname'] ?? '');
 
         // 유효성 검사
         if (empty($email) || empty($password)) {
@@ -119,16 +119,16 @@ class UserController
             Helper::redirect('/signup');
         }
 
-        // 이름 입력 시 유효성 검사
-        if (!empty($name)) {
-            if (strlen($name) < 2 || strlen($name) > 20) {
-                Helper::flash('error', '이름은 2자 이상 20자 이하여야 합니다.');
+        // 닉네임 입력 시 유효성 검사
+        if (!empty($nickname)) {
+            if (strlen($nickname) < 2 || strlen($nickname) > 20) {
+                Helper::flash('error', '닉네임은 2자 이상 20자 이하여야 합니다.');
                 Helper::redirect('/signup');
             }
 
-            // 이름 중복 체크
-            if ($this->userModel->findByName($name)) {
-                Helper::flash('error', '이미 사용중인 이름입니다.');
+            // 닉네임 중복 체크
+            if ($this->userModel->findByNickname($nickname)) {
+                Helper::flash('error', '이미 사용중인 닉네임입니다.');
                 Helper::redirect('/signup');
             }
         }
@@ -137,7 +137,7 @@ class UserController
         $result = $this->userModel->create([
             'email' => $email,
             'password' => $password,
-            'name' => $name, // 비어있으면 자동 생성됨
+            'nickname' => $nickname, // 비어있으면 자동 생성됨
         ]);
 
         if ($result) {
@@ -185,8 +185,8 @@ class UserController
             $data['email'] = trim($_POST['email']);
         }
 
-        if (!empty($_POST['name'])) {
-            $data['name'] = trim($_POST['name']);
+        if (!empty($_POST['nickname'])) {
+            $data['nickname'] = trim($_POST['nickname']);
         }
 
         if (!empty($_POST['password'])) {
@@ -200,8 +200,8 @@ class UserController
 
         if ($this->userModel->update($userId, $data)) {
             // 세션 정보 업데이트
-            if (isset($data['name'])) {
-                $_SESSION['name'] = $data['name'];
+            if (isset($data['nickname'])) {
+                $_SESSION['nickname'] = $data['nickname'];
             }
 
             Helper::flash('success', '프로필이 수정되었습니다.');

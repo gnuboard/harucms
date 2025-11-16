@@ -63,7 +63,7 @@ class User
      */
     public function getAll(int $limit = 100, int $offset = 0): array
     {
-        $sql = "SELECT id, email, name, is_admin, status, created_at, last_login
+        $sql = "SELECT id, email, nickname, is_admin, status, created_at, last_login
                 FROM users
                 ORDER BY created_at DESC
                 LIMIT ? OFFSET ?";
@@ -90,23 +90,23 @@ class User
             return false;
         }
 
-        // 이름이 없으면 자동 생성
-        if (empty($data['name'])) {
-            $data['name'] = $this->generateUniqueName();
+        // 닉네임이 없으면 자동 생성
+        if (empty($data['nickname'])) {
+            $data['nickname'] = $this->generateUniqueNickname();
         } else {
-            // 이름 중복 체크
-            if ($this->findByName($data['name'])) {
+            // 닉네임 중복 체크
+            if ($this->findByNickname($data['nickname'])) {
                 return false;
             }
         }
 
-        $sql = "INSERT INTO users (email, password, name, is_admin, status)
+        $sql = "INSERT INTO users (email, password, nickname, is_admin, status)
                 VALUES (?, ?, ?, ?, ?)";
 
         $params = [
             $data['email'],
             password_hash($data['password'], PASSWORD_BCRYPT),
-            $data['name'],
+            $data['nickname'],
             $data['is_admin'] ?? 0,
             $data['status'] ?? 1
         ];
@@ -115,18 +115,18 @@ class User
     }
 
     /**
-     * 이름으로 조회
+     * 닉네임으로 조회
      */
-    public function findByName(string $name): ?array
+    public function findByNickname(string $nickname): ?array
     {
-        $sql = "SELECT * FROM users WHERE name = ?";
-        return $this->db->fetchOne($sql, [$name]);
+        $sql = "SELECT * FROM users WHERE nickname = ?";
+        return $this->db->fetchOne($sql, [$nickname]);
     }
 
     /**
-     * 유일한 이름 자동 생성 (형용사+형용사+명사)
+     * 유일한 닉네임 자동 생성 (형용사+형용사+명사)
      */
-    private function generateUniqueName(): string
+    private function generateUniqueNickname(): string
     {
         $adjectives = [
             '밝은', '행복한', '즐거운', '귀여운', '멋진', '아름다운', '사랑스러운', '용감한',
@@ -146,17 +146,17 @@ class User
             $adj2 = $adjectives[array_rand($adjectives)];
             $noun = $nouns[array_rand($nouns)];
 
-            $name = $adj1 . $adj2 . $noun;
+            $nickname = $adj1 . $adj2 . $noun;
 
             // 중복 체크
-            if (!$this->findByName($name)) {
-                return $name;
+            if (!$this->findByNickname($nickname)) {
+                return $nickname;
             }
 
             // 중복이면 숫자 추가
-            $name = $adj1 . $adj2 . $noun . rand(1, 9999);
-            if (!$this->findByName($name)) {
-                return $name;
+            $nickname = $adj1 . $adj2 . $noun . rand(1, 9999);
+            if (!$this->findByNickname($nickname)) {
+                return $nickname;
             }
         }
 
@@ -177,9 +177,9 @@ class User
             $params[] = $data['email'];
         }
 
-        if (isset($data['name'])) {
-            $fields[] = "name = ?";
-            $params[] = $data['name'];
+        if (isset($data['nickname'])) {
+            $fields[] = "nickname = ?";
+            $params[] = $data['nickname'];
         }
 
         if (isset($data['password'])) {
@@ -248,9 +248,9 @@ class User
      */
     public function search(string $keyword, int $limit = 20, int $offset = 0): array
     {
-        $sql = "SELECT id, email, name, is_admin, status, created_at
+        $sql = "SELECT id, email, nickname, is_admin, status, created_at
                 FROM users
-                WHERE email LIKE ? OR name LIKE ?
+                WHERE email LIKE ? OR nickname LIKE ?
                 ORDER BY created_at DESC
                 LIMIT ? OFFSET ?";
 
