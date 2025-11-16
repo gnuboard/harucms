@@ -5,27 +5,6 @@ ob_start();
 
 <?php use App\Core\Helper; ?>
 
-<!-- Header with User Info -->
-<div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="flex items-center justify-between">
-            <div>
-                <h1 class="text-2xl md:text-3xl font-bold">관리자 대시보드</h1>
-                <p class="text-blue-100 text-sm mt-1">HaruCMS 관리 페이지</p>
-            </div>
-            <div class="flex items-center gap-4">
-                <div class="text-right hidden sm:block">
-                    <p class="text-sm font-medium"><?= htmlspecialchars($_SESSION['nickname'] ?? $_SESSION['email'] ?? '관리자') ?>님</p>
-                    <p class="text-xs text-blue-200"><?= htmlspecialchars($_SESSION['email'] ?? '') ?></p>
-                </div>
-                <a href="/admin/logout" class="px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-lg text-white text-sm font-medium transition-all">
-                    로그아웃
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Welcome Card -->
     <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 mb-8">
@@ -165,5 +144,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require __DIR__ . '/../layouts/default.php';
+require __DIR__ . '/../layouts/admin.php';
 ?>
