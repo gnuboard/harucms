@@ -13,7 +13,7 @@ ob_start();
         <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-emerald-400/20 dark:bg-emerald-500/10 rounded-full blur-3xl"></div>
     </div>
 
-    <div class="relative max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
+    <div class="relative max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <!-- Announcement Banner -->
         <div class="flex justify-center animate-fade-in">
             <a class="group inline-flex items-center gap-x-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-blue-200/50 dark:border-blue-500/30 text-xs font-medium text-gray-700 dark:text-slate-200 p-2 px-4 rounded-full transition-all hover:border-blue-300 dark:hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 focus:outline-none" href="#">
@@ -28,28 +28,28 @@ ob_start();
         </div>
 
         <!-- Title -->
-        <div class="mt-8 max-w-3xl text-center mx-auto">
-            <h1 class="block font-bold text-5xl md:text-6xl lg:text-7xl tracking-tight">
+        <div class="mt-6 max-w-3xl text-center mx-auto">
+            <h1 class="block font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight">
                 <span class="text-gray-900 dark:text-white">HaruCMS</span>
                 <span class="block mt-2 bg-clip-text bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 text-transparent dark:from-blue-400 dark:via-emerald-400 dark:to-blue-400 animate-gradient bg-[length:200%_auto]">로 시작하세요</span>
             </h1>
         </div>
 
         <!-- Description -->
-        <div class="mt-6 max-w-2xl text-center mx-auto">
-            <p class="text-lg md:text-xl text-gray-600 dark:text-white leading-relaxed font-semibold">경량, 빠름, 그리고 강력한 PHP CMS 솔루션으로<br class="hidden sm:block"/>당신의 웹사이트를 완성하세요</p>
+        <div class="mt-4 max-w-2xl text-center mx-auto">
+            <p class="text-base md:text-lg text-gray-600 dark:text-white leading-relaxed font-semibold">경량, 빠름, 그리고 강력한 PHP CMS 솔루션으로<br class="hidden sm:block"/>당신의 웹사이트를 완성하세요</p>
         </div>
 
         <!-- Buttons -->
         <?php if (Helper::isLoggedIn()): ?>
-            <div class="mt-10 flex justify-center">
+            <div class="mt-8 flex justify-center">
                 <div class="inline-flex items-center gap-x-3 bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 bg-[length:200%_auto] text-white text-base font-semibold rounded-2xl py-4 px-8 shadow-lg shadow-blue-500/40 hover:shadow-2xl hover:shadow-emerald-500/50 transition-all duration-500 hover:bg-right dark:shadow-blue-500/30 dark:hover:shadow-emerald-500/40">
                     <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     <strong><?= htmlspecialchars(Helper::userNickname() ?? '사용자') ?></strong>님 환영합니다!
                 </div>
             </div>
         <?php else: ?>
-            <div class="mt-10 gap-4 flex justify-center flex-wrap">
+            <div class="mt-8 gap-4 flex justify-center flex-wrap">
                 <a class="group relative py-4 px-8 inline-flex items-center gap-x-2 text-base font-semibold rounded-2xl border-2 border-transparent bg-gradient-to-r from-blue-600 to-emerald-600 text-white hover:from-blue-700 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-lg shadow-blue-500/40 hover:shadow-2xl hover:shadow-emerald-500/50 hover:-translate-y-0.5 transition-all duration-300 dark:shadow-blue-500/30 dark:hover:shadow-emerald-500/40 dark:focus:ring-offset-slate-900" href="/login">
                     시작하기
                     <svg class="shrink-0 size-5 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
