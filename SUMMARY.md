@@ -43,7 +43,7 @@ HaruCMS 저가형 호스팅 환경에서 빠르게 실행 가능한 경량 PHP C
   - 컨텐츠 관리
 
 #### Views
-- **user/** - login.php, register.php
+- **user/** - login.php, signup.php
 - **board/** - list.php, view.php, write.php, edit.php
 - **admin/** - dashboard.php, login.php
 - **admin/users/** - list.php
@@ -56,7 +56,7 @@ HaruCMS 저가형 호스팅 환경에서 빠르게 실행 가능한 경량 PHP C
 ```
 /                           → /boards/free 리다이렉트
 /login                      → 로그인
-/register                   → 회원가입
+/signup                     → 회원가입
 /logout                     → 로그아웃
 /mypage                     → 마이페이지
 /boards/free                → 자유게시판

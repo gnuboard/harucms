@@ -11,7 +11,12 @@
       "Bash(git commit:*)",
       "Bash(git config:*)",
       "Bash(git remote add:*)",
-      "Bash(git remote remove:*)"
+      "Bash(git remote remove:*)",
+      "Read(//etc/apache2/sites-enabled/**)",
+      "Bash(apache2:*)",
+      "Bash(httpd:*)",
+      "Bash(rm:*)",
+      "Bash(chmod:*)"
     ],
     "deny": [],
     "ask": []

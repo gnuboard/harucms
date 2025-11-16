@@ -73,56 +73,69 @@ class UserController
     /**
      * 회원가입 폼
      */
-    public function showRegisterForm(): string
+    public function showSignupForm(): string
     {
         if (Helper::isLoggedIn()) {
             Helper::redirect('/');
         }
 
         ob_start();
-        require BASE_PATH . '/app/Views/user/register.php';
+        require BASE_PATH . '/app/Views/user/signup.php';
         return ob_get_clean();
     }
 
     /**
      * 회원가입 처리
      */
-    public function register(): void
+    public function signup(): void
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            Helper::redirect('/register');
+            Helper::redirect('/signup');
         }
 
         $email = trim($_POST['email'] ?? '');
         $password = $_POST['password'] ?? '';
         $passwordConfirm = $_POST['password_confirm'] ?? '';
+        $nickname = trim($_POST['nickname'] ?? '');
         $name = trim($_POST['name'] ?? '');
 
         // 유효성 검사
-        if (empty($email) || empty($password)) {
+        if (empty($email) || empty($password) || empty($nickname)) {
             Helper::flash('error', '필수 항목을 모두 입력해주세요.');
-            Helper::redirect('/register');
+            Helper::redirect('/signup');
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             Helper::flash('error', '올바른 이메일 주소를 입력해주세요.');
-            Helper::redirect('/register');
+            Helper::redirect('/signup');
         }
 
         if ($password !== $passwordConfirm) {
             Helper::flash('error', '비밀번호가 일치하지 않습니다.');
-            Helper::redirect('/register');
+            Helper::redirect('/signup');
         }
 
         if (strlen($password) < 6) {
             Helper::flash('error', '비밀번호는 최소 6자 이상이어야 합니다.');
-            Helper::redirect('/register');
+            Helper::redirect('/signup');
+        }
+
+        if (strlen($nickname) < 2 || strlen($nickname) > 20) {
+            Helper::flash('error', '닉네임은 2자 이상 20자 이하여야 합니다.');
+            Helper::redirect('/signup');
+        }
+
+        // 닉네임 중복 체크
+        if ($this->userModel->findByNickname($nickname)) {
+            Helper::flash('error', '이미 사용중인 닉네임입니다.');
+            Helper::redirect('/signup');
         }
 
         // 사용자 생성
         $result = $this->userModel->create([
             'email' => $email,
             'password' => $password,
+            'nickname' => $nickname,
             'name' => $name,
         ]);
 
@@ -131,7 +144,7 @@ class UserController
             Helper::redirect('/login');
         } else {
             Helper::flash('error', '이미 사용중인 이메일입니다.');
-            Helper::redirect('/register');
+            Helper::redirect('/signup');
         }
     }
 

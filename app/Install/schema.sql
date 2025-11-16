@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `nickname` varchar(50) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
@@ -28,12 +29,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `last_login` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `nickname` (`nickname`),
   KEY `is_admin` (`is_admin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 기본 관리자 계정 (Email: admin@example.com, PW: admin1234)
-INSERT INTO `users` (`email`, `password`, `name`, `is_admin`, `status`) VALUES
-('admin@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '관리자', 1, 1);
+INSERT INTO `users` (`email`, `password`, `nickname`, `name`, `is_admin`, `status`) VALUES
+('admin@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', '관리자', 1, 1);
 
 -- 시스템 설정 테이블
 CREATE TABLE IF NOT EXISTS `configs` (

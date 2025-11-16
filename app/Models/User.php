@@ -90,18 +90,33 @@ class User
             return false;
         }
 
-        $sql = "INSERT INTO users (email, password, name, is_admin, status)
-                VALUES (?, ?, ?, ?, ?)";
+        // 닉네임 중복 체크
+        if (isset($data['nickname']) && $this->findByNickname($data['nickname'])) {
+            return false;
+        }
+
+        $sql = "INSERT INTO users (email, password, nickname, name, is_admin, status)
+                VALUES (?, ?, ?, ?, ?, ?)";
 
         $params = [
             $data['email'],
             password_hash($data['password'], PASSWORD_BCRYPT),
+            $data['nickname'],
             $data['name'] ?? null,
             $data['is_admin'] ?? 0,
             $data['status'] ?? 1
         ];
 
         return $this->db->execute($sql, $params);
+    }
+
+    /**
+     * 닉네임으로 조회
+     */
+    public function findByNickname(string $nickname): ?array
+    {
+        $sql = "SELECT * FROM users WHERE nickname = ?";
+        return $this->db->fetchOne($sql, [$nickname]);
     }
 
     /**

@@ -139,7 +139,7 @@
         </form>
 
         <div class="links">
-            <a href="/register">회원가입</a> |
+            <a href="/signup">회원가입</a> |
             <a href="/">메인으로</a> |
             <a href="/admin/login">관리자</a>
         </div>

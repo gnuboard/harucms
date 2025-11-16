@@ -15,7 +15,7 @@
             justify-content: center;
             padding: 20px;
         }
-        .register-container {
+        .signup-container {
             background: #fff;
             padding: 40px;
             border-radius: 10px;
@@ -23,16 +23,16 @@
             width: 100%;
             max-width: 500px;
         }
-        .register-header {
+        .signup-header {
             text-align: center;
             margin-bottom: 30px;
         }
-        .register-header h1 {
+        .signup-header h1 {
             font-size: 28px;
             color: #333;
             margin-bottom: 10px;
         }
-        .register-header p {
+        .signup-header p {
             color: #666;
             font-size: 14px;
         }
@@ -105,8 +105,8 @@
     </style>
 </head>
 <body>
-    <div class="register-container">
-        <div class="register-header">
+    <div class="signup-container">
+        <div class="signup-header">
             <h1>회원가입</h1>
             <p>새로운 계정을 만들어보세요</p>
         </div>
@@ -120,16 +120,11 @@
         </div>
         <?php endif; ?>
 
-        <form method="POST" action="/register">
+        <form method="POST" action="/signup">
             <div class="form-group">
                 <label for="email">이메일 *</label>
                 <input type="email" id="email" name="email" required autofocus placeholder="email@example.com">
                 <small>이메일이 로그인 아이디로 사용됩니다</small>
-            </div>
-
-            <div class="form-group">
-                <label for="name">이름</label>
-                <input type="text" id="name" name="name" placeholder="홍길동">
             </div>
 
             <div class="form-group">
@@ -141,6 +136,18 @@
             <div class="form-group">
                 <label for="password_confirm">비밀번호 확인 *</label>
                 <input type="password" id="password_confirm" name="password_confirm" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nickname">닉네임 *</label>
+                <input type="text" id="nickname" name="nickname" required placeholder="홍길동">
+                <small>2자 이상 20자 이하, 게시글에 표시됩니다</small>
+            </div>
+
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name" placeholder="실명">
+                <small>선택사항입니다</small>
             </div>
 
             <button type="submit" class="btn">가입하기</button>
