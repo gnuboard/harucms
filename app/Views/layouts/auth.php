@@ -16,7 +16,7 @@
         }
 
         .auth-header p {
-            color: var(--muted-foreground);
+            color: hsl(var(--muted-foreground));
             text-align: center;
         }
 
@@ -34,32 +34,32 @@
         .form-group input {
             width: 100%;
             padding: 0.5rem 0.75rem;
-            border: 1px solid var(--border);
+            border: 1px solid hsl(var(--border));
             border-radius: 0.375rem;
-            background-color: var(--background);
-            color: var(--foreground);
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
             font-size: 0.875rem;
             transition: all 0.2s;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: var(--ring);
-            box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 10%, transparent);
+            border-color: hsl(var(--ring));
+            box-shadow: 0 0 0 3px hsl(var(--ring) / 0.1);
         }
 
         .form-group small {
             display: block;
             margin-top: 0.25rem;
             font-size: 0.75rem;
-            color: var(--muted-foreground);
+            color: hsl(var(--muted-foreground));
         }
 
         .btn {
             width: 100%;
             padding: 0.625rem 1rem;
-            background-color: var(--primary);
-            color: var(--primary-foreground);
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
             border: none;
             border-radius: 0.375rem;
             font-size: 0.875rem;
@@ -74,18 +74,18 @@
 
         .btn:focus-visible {
             outline: none;
-            box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 30%, transparent);
+            box-shadow: 0 0 0 3px hsl(var(--ring) / 0.3);
         }
 
         .links {
             text-align: center;
             margin-top: 1.5rem;
             font-size: 0.875rem;
-            color: var(--muted-foreground);
+            color: hsl(var(--muted-foreground));
         }
 
         .links a {
-            color: var(--primary);
+            color: hsl(var(--primary));
             text-decoration: none;
             transition: all 0.2s;
         }

@@ -2,8 +2,8 @@
 $title = '마이페이지';
 $additional_css = '
 .user-info {
-    background-color: var(--muted);
-    border: 1px solid var(--border);
+    background-color: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
     padding: 1.5rem;
     border-radius: 0.5rem;
     margin-bottom: 2rem;
@@ -12,25 +12,25 @@ $additional_css = '
     display: flex;
     justify-content: space-between;
     padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid hsl(var(--border));
 }
 .user-info-item:last-child {
     border-bottom: none;
 }
 .user-info-item label {
     font-weight: 600;
-    color: var(--foreground);
+    color: hsl(var(--foreground));
 }
 .user-info-item span {
-    color: var(--muted-foreground);
+    color: hsl(var(--muted-foreground));
 }
 .section-title {
     font-size: 1.125rem;
     font-weight: 600;
-    color: var(--foreground);
+    color: hsl(var(--foreground));
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--border);
+    border-bottom: 2px solid hsl(var(--border));
 }
 .form-group {
     margin-bottom: 1.25rem;
@@ -38,39 +38,39 @@ $additional_css = '
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--foreground);
+    color: hsl(var(--foreground));
     font-weight: 500;
     font-size: 0.875rem;
 }
 .form-group input {
     width: 100%;
     padding: 0.5rem 0.75rem;
-    border: 1px solid var(--border);
+    border: 1px solid hsl(var(--border));
     border-radius: 0.375rem;
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     font-size: 0.875rem;
     transition: all 0.2s;
 }
 .form-group input:focus {
     outline: none;
-    border-color: var(--ring);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 10%, transparent);
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.1);
 }
 .form-group input:read-only {
-    background-color: var(--muted);
-    color: var(--muted-foreground);
+    background-color: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
 }
 .form-group small {
     display: block;
     margin-top: 0.25rem;
-    color: var(--muted-foreground);
+    color: hsl(var(--muted-foreground));
     font-size: 0.75rem;
 }
 .btn {
     width: 100%;
-    background-color: var(--primary);
-    color: var(--primary-foreground);
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
     border: none;
     padding: 0.625rem 1rem;
     border-radius: 0.375rem;
@@ -85,7 +85,7 @@ $additional_css = '
 }
 .btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 30%, transparent);
+    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.3);
 }
 .alert {
     padding: 0.75rem 1rem;
