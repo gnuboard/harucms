@@ -43,58 +43,58 @@
 
 <style>
     :root {
-        /* 모던한 블루 계열 색상 팔레트 */
+        /* 선명한 파란색 계열 색상 팔레트 */
         --background: 0 0% 100%;
-        --foreground: 222.2 84% 4.9%;
+        --foreground: 220 13% 13%;
         --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
+        --card-foreground: 220 13% 13%;
+        --muted: 214 32% 91%;
+        --muted-foreground: 215 14% 34%;
+        --border: 214 32% 85%;
+        --input: 214 32% 85%;
 
-        /* 생동감 있는 모던 블루 primary */
-        --primary: 221.2 83.2% 53.3%;
-        --primary-foreground: 210 40% 98%;
+        /* 진하고 선명한 파란색 primary - #2563eb (Blue 600) */
+        --primary: 217 91% 60%;
+        --primary-foreground: 0 0% 100%;
 
-        --secondary: 210 40% 96.1%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
+        --secondary: 214 95% 93%;
+        --secondary-foreground: 217 91% 60%;
 
-        /* 밝은 블루 accent */
-        --accent: 210 40% 96.1%;
-        --accent-foreground: 222.2 47.4% 11.2%;
+        /* 파란색 accent */
+        --accent: 214 95% 93%;
+        --accent-foreground: 217 91% 60%;
 
-        --destructive: 0 84.2% 60.2%;
+        --destructive: 0 84% 60%;
         --destructive-foreground: 0 0% 98%;
 
-        --ring: 221.2 83.2% 53.3%;
+        --ring: 217 91% 60%;
     }
 
     .dark {
-        /* 깊고 세련된 다크 블루 배경 */
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
+        /* 다크 블루 배경 */
+        --background: 220 26% 14%;
+        --foreground: 213 31% 91%;
+        --card: 220 26% 14%;
+        --card-foreground: 213 31% 91%;
+        --muted: 217 33% 17%;
+        --muted-foreground: 215 20% 65%;
+        --border: 217 33% 24%;
+        --input: 217 33% 24%;
 
-        /* 다크모드에서 더욱 선명한 블루 */
-        --primary: 217.2 91.2% 59.8%;
-        --primary-foreground: 222.2 47.4% 11.2%;
+        /* 다크모드용 밝은 스카이블루 - #60a5fa (Blue 400) */
+        --primary: 213 94% 68%;
+        --primary-foreground: 220 26% 14%;
 
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
+        --secondary: 217 33% 17%;
+        --secondary-foreground: 213 31% 91%;
 
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
+        --accent: 217 33% 24%;
+        --accent-foreground: 213 94% 68%;
 
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
+        --destructive: 0 63% 31%;
+        --destructive-foreground: 213 31% 91%;
 
-        --ring: 224.3 76.3% 48%;
+        --ring: 213 94% 68%;
     }
 
     /* 공통 유틸리티 */
