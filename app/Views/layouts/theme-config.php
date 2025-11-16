@@ -33,37 +33,6 @@
     .animate-fade-in {
         animation: fade-in 0.6s ease-out;
     }
-
-    /* 브라우저 자동완성 스타일 오버라이드 */
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active {
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: #111827;
-        transition: background-color 5000s ease-in-out 0s;
-        box-shadow: inset 0 0 20px 20px #ffffff;
-    }
-
-    .dark input:-webkit-autofill,
-    .dark input:-webkit-autofill:hover,
-    .dark input:-webkit-autofill:focus,
-    .dark input:-webkit-autofill:active {
-        -webkit-text-fill-color: #ffffff;
-        box-shadow: inset 0 0 20px 20px #334155;
-    }
-
-    input[readonly]:-webkit-autofill,
-    input[readonly]:-webkit-autofill:hover,
-    input[readonly]:-webkit-autofill:focus {
-        box-shadow: inset 0 0 20px 20px #f9fafb;
-    }
-
-    .dark input[readonly]:-webkit-autofill,
-    .dark input[readonly]:-webkit-autofill:hover,
-    .dark input[readonly]:-webkit-autofill:focus {
-        box-shadow: inset 0 0 20px 20px rgba(51, 65, 85, 0.5);
-    }
 </style>
 
 <?php if (isset($additional_css)): ?>
