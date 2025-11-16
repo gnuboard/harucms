@@ -1,262 +1,181 @@
 <?php
 $title = 'HaruCMS - 메인';
-$additional_css = '
-.hero-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 4rem 2rem;
-    border-radius: 1.5rem;
-    margin-bottom: 4rem;
-    position: relative;
-    overflow: hidden;
-}
-.hero-section::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    animation: pulse 15s ease-in-out infinite;
-}
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.8; }
-}
-.hero-content {
-    position: relative;
-    z-index: 1;
-}
-.hero-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    letter-spacing: -0.02em;
-}
-.hero-subtitle {
-    font-size: 1.25rem;
-    color: rgba(255,255,255,0.95);
-    margin-bottom: 2rem;
-    font-weight: 400;
-}
-.user-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(10px);
-    padding: 0.75rem 1.5rem;
-    border-radius: 2rem;
-    border: 1px solid rgba(255,255,255,0.3);
-    color: #ffffff;
-    font-weight: 500;
-    margin-top: 1rem;
-}
-.user-badge-icon {
-    width: 24px;
-    height: 24px;
-    background: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.875rem;
-}
-.feature-card {
-    background: var(--bg-main);
-    border: 1px solid var(--border-color);
-    border-radius: 1rem;
-    padding: 2rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    display: block;
-}
-.feature-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-.feature-card:hover::before {
-    transform: scaleX(1);
-}
-.feature-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    border-color: var(--primary);
-}
-.feature-icon {
-    width: 3.5rem;
-    height: 3.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    color: #ffffff;
-    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
-}
-.feature-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
-}
-.feature-description {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-.feature-arrow {
-    margin-top: 1rem;
-    color: var(--primary);
-    font-weight: 600;
-    font-size: 0.875rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.3s ease;
-}
-.feature-card:hover .feature-arrow {
-    opacity: 1;
-    transform: translateX(0);
-}
-.stats-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-}
-.stat-card {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-color);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    text-align: center;
-}
-.stat-value {
-    font-size: 2rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.5rem;
-}
-.stat-label {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    font-weight: 500;
-}
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    .hero-subtitle {
-        font-size: 1.125rem;
-    }
-}
-';
 ob_start();
 ?>
 
-<div class="max-w-6xl mx-auto">
-    <?php
-    use App\Core\Helper;
-    ?>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <?php use App\Core\Helper; ?>
 
     <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="hero-content text-center">
-            <h1 class="hero-title">HaruCMS</h1>
-            <p class="hero-subtitle">경량, 빠름, 그리고 강력한 PHP CMS 솔루션</p>
+    <div class="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 rounded-3xl overflow-hidden mb-16 shadow-2xl">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50"></div>
 
-            <?php if (Helper::isLoggedIn()): ?>
-                <div class="user-badge">
-                    <div class="user-badge-icon">👋</div>
-                    <span><strong><?= htmlspecialchars(Helper::userName()) ?></strong>님 환영합니다!</span>
-                </div>
-            <?php else: ?>
-                <div class="flex gap-3 justify-center mt-4">
-                    <a href="/login" style="display: inline-block; padding: 0.75rem 2rem; background: rgba(255,255,255,0.95); color: #667eea; border-radius: 0.5rem; font-weight: 600; text-decoration: none; transition: all 0.2s;">로그인</a>
-                    <a href="/signup" style="display: inline-block; padding: 0.75rem 2rem; background: rgba(255,255,255,0.2); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); border-radius: 0.5rem; font-weight: 600; text-decoration: none; backdrop-filter: blur(10px); transition: all 0.2s;">회원가입</a>
-                </div>
-            <?php endif; ?>
+        <div class="relative px-8 py-20 sm:px-12 sm:py-24 lg:py-32">
+            <div class="text-center">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight">
+                    <span class="block">HaruCMS</span>
+                </h1>
+                <p class="text-xl sm:text-2xl text-blue-100 mb-8 font-light max-w-3xl mx-auto">
+                    경량, 빠름, 그리고 강력한 PHP CMS 솔루션
+                </p>
+
+                <?php if (Helper::isLoggedIn()): ?>
+                    <div class="inline-flex items-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-xl border border-white/30 rounded-full text-white font-semibold shadow-lg">
+                        <span class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-lg">👋</span>
+                        <span><strong><?= htmlspecialchars(Helper::userName()) ?></strong>님 환영합니다!</span>
+                    </div>
+                <?php else: ?>
+                    <div class="flex flex-wrap gap-4 justify-center mt-8">
+                        <a href="/login" class="px-8 py-3 bg-white text-blue-700 rounded-xl font-bold hover:bg-blue-50 transition-all duration-200 shadow-xl hover:shadow-2xl hover:-translate-y-0.5">
+                            로그인
+                        </a>
+                        <a href="/signup" class="px-8 py-3 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 rounded-xl font-bold hover:bg-white/20 transition-all duration-200 shadow-xl">
+                            회원가입
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 
     <!-- Stats Section -->
-    <div class="stats-section">
-        <div class="stat-card">
-            <div class="stat-value">100%</div>
-            <div class="stat-label">오픈소스</div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border border-blue-200 dark:border-blue-800 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow duration-300">
+            <div class="text-5xl font-black bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-3">
+                100%
+            </div>
+            <div class="text-sm font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">
+                오픈소스
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value">0원</div>
-            <div class="stat-label">라이선스 비용</div>
+
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border border-blue-200 dark:border-blue-800 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow duration-300">
+            <div class="text-5xl font-black bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-3">
+                0원
+            </div>
+            <div class="text-sm font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">
+                라이선스 비용
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value">5초</div>
-            <div class="stat-label">설치 시간</div>
+
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border border-blue-200 dark:border-blue-800 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow duration-300">
+            <div class="text-5xl font-black bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-3">
+                5초
+            </div>
+            <div class="text-sm font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">
+                설치 시간
+            </div>
         </div>
     </div>
 
     <!-- Features Section -->
-    <h2 style="font-size: 2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 2rem; text-align: center;">주요 기능</h2>
+    <div class="mb-16">
+        <h2 class="text-4xl font-black text-center mb-12 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            주요 기능
+        </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        <a href="/boards/notice" class="feature-card">
-            <div class="feature-icon">📢</div>
-            <h3 class="feature-title">공지사항</h3>
-            <p class="feature-description">중요한 공지사항과 업데이트를 확인하고 커뮤니티 소식을 받아보세요.</p>
-            <div class="feature-arrow">
-                자세히 보기 →
-            </div>
-        </a>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- 공지사항 -->
+            <a href="/boards/notice" class="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
 
-        <a href="/boards/free" class="feature-card">
-            <div class="feature-icon">💬</div>
-            <h3 class="feature-title">자유게시판</h3>
-            <p class="feature-description">자유롭게 의견을 나누고 다른 사용자들과 소통할 수 있는 공간입니다.</p>
-            <div class="feature-arrow">
-                자세히 보기 →
-            </div>
-        </a>
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                    📢
+                </div>
 
-        <?php if (Helper::isLoggedIn()): ?>
-        <a href="/mypage" class="feature-card">
-            <div class="feature-icon">👤</div>
-            <h3 class="feature-title">마이페이지</h3>
-            <p class="feature-description">프로필 정보를 관리하고 개인 설정을 변경할 수 있습니다.</p>
-            <div class="feature-arrow">
-                자세히 보기 →
-            </div>
-        </a>
-        <?php endif; ?>
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                    공지사항
+                </h3>
 
-        <?php if (Helper::isAdmin()): ?>
-        <a href="/admin" class="feature-card">
-            <div class="feature-icon">⚙️</div>
-            <h3 class="feature-title">관리자</h3>
-            <p class="feature-description">사이트 전반을 관리하고 컨텐츠를 효율적으로 운영하세요.</p>
-            <div class="feature-arrow">
-                자세히 보기 →
-            </div>
-        </a>
-        <?php endif; ?>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    중요한 공지사항과 업데이트를 확인하고 커뮤니티 소식을 받아보세요.
+                </p>
+
+                <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    자세히 보기
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- 자유게시판 -->
+            <a href="/boards/free" class="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                    💬
+                </div>
+
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                    자유게시판
+                </h3>
+
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    자유롭게 의견을 나누고 다른 사용자들과 소통할 수 있는 공간입니다.
+                </p>
+
+                <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    자세히 보기
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </a>
+
+            <?php if (Helper::isLoggedIn()): ?>
+            <!-- 마이페이지 -->
+            <a href="/mypage" class="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                    👤
+                </div>
+
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                    마이페이지
+                </h3>
+
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    프로필 정보를 관리하고 개인 설정을 변경할 수 있습니다.
+                </p>
+
+                <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    자세히 보기
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </a>
+            <?php endif; ?>
+
+            <?php if (Helper::isAdmin()): ?>
+            <!-- 관리자 -->
+            <a href="/admin" class="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                    ⚙️
+                </div>
+
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                    관리자
+                </h3>
+
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    사이트 전반을 관리하고 컨텐츠를 효율적으로 운영하세요.
+                </p>
+
+                <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    자세히 보기
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </a>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 
