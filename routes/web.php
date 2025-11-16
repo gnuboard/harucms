@@ -12,8 +12,9 @@ $router->post('/install', [InstallController::class, 'install']);
 
 // 메인 페이지
 $router->get('/', function() {
-    header('Location: /boards/free');
-    exit;
+    ob_start();
+    require BASE_PATH . '/app/Views/home.php';
+    return ob_get_clean();
 });
 
 // 관리자 라우트 (가장 먼저 등록 - /:slug 보다 우선)

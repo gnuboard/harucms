@@ -210,6 +210,22 @@ class Helper
     }
 
     /**
+     * 현재 사용자 이름 반환
+     */
+    public static function userName(): ?string
+    {
+        return $_SESSION['name'] ?? null;
+    }
+
+    /**
+     * 현재 사용자 이메일 반환
+     */
+    public static function userEmail(): ?string
+    {
+        return $_SESSION['email'] ?? null;
+    }
+
+    /**
      * 환경설정 값 가져오기 (캐싱 지원)
      */
     public static function config(string $key, $default = null)

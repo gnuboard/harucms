@@ -122,9 +122,28 @@ $router->post('/boards/:name/posts', [PostController::class, 'create']);
 - htaccess로 `.env`, `.sql`, `.log` 파일 접근 차단
 - XSS 방지: 출력 시 `htmlspecialchars()` 사용
 
+## Communication Guidelines
+
+### Language Preference
+- **모든 세션 계획, 처리, 결과는 한글로 작성**
+- 사용자와의 모든 커뮤니케이션은 한국어 사용
+- 코드 주석 및 문서화는 한글로 작성
+- 기술적 설명 및 에러 메시지도 한글로 제공
+
+### File Permissions
+- **app/Views/ 디렉토리의 모든 파일은 664 권한으로 생성**
+- Write 도구로 뷰 파일 생성 후 즉시 `chmod 664` 실행
+- 예시: `chmod 664 /home/kagla/harucms/app/Views/user/mypage.php`
+
 ## Git Workflow
+
+### Commit Policy
+- **모든 작업 완료 후 즉시 커밋 필수**
+- 사용자가 명시적으로 요청하지 않아도 의미 있는 변경사항이 있으면 자동으로 커밋
+- 커밋하지 않고 세션을 종료하지 말 것
 
 ### Auto-commit on Session End
 - 세션 종료 시 자동으로 커밋 생성
 - 커밋 메시지 앞에 매번 다른 이모지 자동 추가
 - 이모지 목록: 🔧 📝 ✨ 🐛 🚀 💄 ♻️ 🔥 ⚡ 🎨 📦 🔒 🌐 🎯 💡 🧹 📚 🔨 🎉 ⬆️
+- 커밋 메시지는 한글로 작성하며, 변경 내용을 명확히 설명

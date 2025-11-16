@@ -90,19 +90,23 @@ class User
             return false;
         }
 
-        // 닉네임 중복 체크
-        if (isset($data['nickname']) && $this->findByNickname($data['nickname'])) {
-            return false;
+        // 이름이 없으면 자동 생성
+        if (empty($data['name'])) {
+            $data['name'] = $this->generateUniqueName();
+        } else {
+            // 이름 중복 체크
+            if ($this->findByName($data['name'])) {
+                return false;
+            }
         }
 
-        $sql = "INSERT INTO users (email, password, nickname, name, is_admin, status)
-                VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (email, password, name, is_admin, status)
+                VALUES (?, ?, ?, ?, ?)";
 
         $params = [
             $data['email'],
             password_hash($data['password'], PASSWORD_BCRYPT),
-            $data['nickname'],
-            $data['name'] ?? null,
+            $data['name'],
             $data['is_admin'] ?? 0,
             $data['status'] ?? 1
         ];
@@ -111,12 +115,53 @@ class User
     }
 
     /**
-     * 닉네임으로 조회
+     * 이름으로 조회
      */
-    public function findByNickname(string $nickname): ?array
+    public function findByName(string $name): ?array
     {
-        $sql = "SELECT * FROM users WHERE nickname = ?";
-        return $this->db->fetchOne($sql, [$nickname]);
+        $sql = "SELECT * FROM users WHERE name = ?";
+        return $this->db->fetchOne($sql, [$name]);
+    }
+
+    /**
+     * 유일한 이름 자동 생성 (형용사+형용사+명사)
+     */
+    private function generateUniqueName(): string
+    {
+        $adjectives = [
+            '밝은', '행복한', '즐거운', '귀여운', '멋진', '아름다운', '사랑스러운', '용감한',
+            '친절한', '상냥한', '따뜻한', '차분한', '활발한', '조용한', '똑똑한', '재미있는',
+            '신나는', '평화로운', '강한', '부드러운', '빠른', '느긋한', '튼튼한', '가벼운'
+        ];
+
+        $nouns = [
+            '호랑이', '토끼', '사자', '고양이', '강아지', '팬더', '코알라', '다람쥐',
+            '펭귄', '돌고래', '나비', '새', '꽃', '나무', '구름', '별',
+            '달', '태양', '바람', '물결', '산', '강', '바다', '하늘'
+        ];
+
+        $maxAttempts = 100;
+        for ($i = 0; $i < $maxAttempts; $i++) {
+            $adj1 = $adjectives[array_rand($adjectives)];
+            $adj2 = $adjectives[array_rand($adjectives)];
+            $noun = $nouns[array_rand($nouns)];
+
+            $name = $adj1 . $adj2 . $noun;
+
+            // 중복 체크
+            if (!$this->findByName($name)) {
+                return $name;
+            }
+
+            // 중복이면 숫자 추가
+            $name = $adj1 . $adj2 . $noun . rand(1, 9999);
+            if (!$this->findByName($name)) {
+                return $name;
+            }
+        }
+
+        // 최악의 경우 타임스탬프 사용
+        return '사용자' . time();
     }
 
     /**

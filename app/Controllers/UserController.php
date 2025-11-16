@@ -96,12 +96,11 @@ class UserController
         $email = trim($_POST['email'] ?? '');
         $password = $_POST['password'] ?? '';
         $passwordConfirm = $_POST['password_confirm'] ?? '';
-        $nickname = trim($_POST['nickname'] ?? '');
         $name = trim($_POST['name'] ?? '');
 
         // 유효성 검사
-        if (empty($email) || empty($password) || empty($nickname)) {
-            Helper::flash('error', '필수 항목을 모두 입력해주세요.');
+        if (empty($email) || empty($password)) {
+            Helper::flash('error', '이메일과 비밀번호를 입력해주세요.');
             Helper::redirect('/signup');
         }
 
@@ -120,23 +119,25 @@ class UserController
             Helper::redirect('/signup');
         }
 
-        if (strlen($nickname) < 2 || strlen($nickname) > 20) {
-            Helper::flash('error', '닉네임은 2자 이상 20자 이하여야 합니다.');
-            Helper::redirect('/signup');
-        }
+        // 이름 입력 시 유효성 검사
+        if (!empty($name)) {
+            if (strlen($name) < 2 || strlen($name) > 20) {
+                Helper::flash('error', '이름은 2자 이상 20자 이하여야 합니다.');
+                Helper::redirect('/signup');
+            }
 
-        // 닉네임 중복 체크
-        if ($this->userModel->findByNickname($nickname)) {
-            Helper::flash('error', '이미 사용중인 닉네임입니다.');
-            Helper::redirect('/signup');
+            // 이름 중복 체크
+            if ($this->userModel->findByName($name)) {
+                Helper::flash('error', '이미 사용중인 이름입니다.');
+                Helper::redirect('/signup');
+            }
         }
 
         // 사용자 생성
         $result = $this->userModel->create([
             'email' => $email,
             'password' => $password,
-            'nickname' => $nickname,
-            'name' => $name,
+            'name' => $name, // 비어있으면 자동 생성됨
         ]);
 
         if ($result) {

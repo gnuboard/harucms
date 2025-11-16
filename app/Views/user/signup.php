@@ -139,15 +139,9 @@
             </div>
 
             <div class="form-group">
-                <label for="nickname">닉네임 *</label>
-                <input type="text" id="nickname" name="nickname" required placeholder="홍길동">
-                <small>2자 이상 20자 이하, 게시글에 표시됩니다</small>
-            </div>
-
-            <div class="form-group">
-                <label for="name">이름</label>
-                <input type="text" id="name" name="name" placeholder="실명">
-                <small>선택사항입니다</small>
+                <label for="name">이름 (선택사항)</label>
+                <input type="text" id="name" name="name" placeholder="홍길동">
+                <small>입력하지 않으면 자동으로 생성됩니다 (예: 밝은행복한호랑이)</small>
             </div>
 
             <button type="submit" class="btn">가입하기</button>
