@@ -1,6 +1,13 @@
 <!-- Tailwind CSS (Local) -->
 <script src="/assets/js/tailwind.js"></script>
 
+<!-- Tailwind CSS 다크모드 설정 -->
+<script>
+    tailwind.config = {
+        darkMode: 'class',
+    }
+</script>
+
 <style>
     /* 애니메이션 */
     @keyframes gradient {
