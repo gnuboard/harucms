@@ -2,101 +2,123 @@
 $title = '마이페이지';
 $additional_css = '
 .user-info {
-    background: #f5f5f5;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
+    background-color: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
 }
 .user-info-item {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid hsl(var(--border));
 }
 .user-info-item:last-child {
     border-bottom: none;
 }
 .user-info-item label {
     font-weight: 600;
-    color: #333;
+    color: hsl(var(--foreground));
 }
 .user-info-item span {
-    color: #666;
+    color: hsl(var(--muted-foreground));
 }
 .section-title {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 600;
-    color: #333;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #667eea;
+    color: hsl(var(--foreground));
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid hsl(var(--border));
 }
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #333;
-    font-weight: 600;
-    font-size: 14px;
+    margin-bottom: 0.5rem;
+    color: hsl(var(--foreground));
+    font-weight: 500;
+    font-size: 0.875rem;
 }
 .form-group input {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: border-color 0.3s;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.375rem;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-size: 0.875rem;
+    transition: all 0.2s;
 }
 .form-group input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 0 3px hsla(var(--ring), 0.1);
+}
+.form-group input:read-only {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
 }
 .form-group small {
     display: block;
-    margin-top: 5px;
-    color: #999;
-    font-size: 12px;
+    margin-top: 0.25rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.75rem;
 }
 .btn {
     width: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
     border: none;
-    padding: 14px;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
+    padding: 0.625rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: opacity 0.3s;
-    margin-top: 10px;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
 }
 .btn:hover {
     opacity: 0.9;
 }
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px hsla(var(--ring), 0.3);
+}
 .alert {
-    padding: 12px;
-    margin-bottom: 20px;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.25rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
 }
 .alert-success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: hsl(142.1 76.2% 96.3%);
+    color: hsl(142.1 76.2% 26.3%);
+    border: 1px solid hsl(142.1 76.2% 86.3%);
 }
 .alert-error {
-    background: #fee;
-    color: #c33;
-    border: 1px solid #fcc;
+    background-color: hsl(0 84.2% 96.5%);
+    color: hsl(0 84.2% 40.2%);
+    border: 1px solid hsl(0 84.2% 86.5%);
+}
+.dark .alert-success {
+    background-color: hsl(142.1 76.2% 13.9%);
+    color: hsl(142.1 76.2% 76.3%);
+    border-color: hsl(142.1 76.2% 23.9%);
+}
+.dark .alert-error {
+    background-color: hsl(0 84.2% 13.9%);
+    color: hsl(0 84.2% 76.3%);
+    border-color: hsl(0 84.2% 23.9%);
 }
 ';
 ob_start();
 ?>
 
-<div class="container" style="max-width: 700px;">
-    <h1 style="font-size: 28px; color: #333; margin-bottom: 30px; text-align: center;">마이페이지</h1>
+<div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-8 text-center">마이페이지</h1>
 
     <?php
     use App\Core\Helper;
