@@ -54,12 +54,9 @@ ob_start();
         </button>
     </form>
 
-    <div class="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-slate-400">
+    <div class="text-center text-sm text-gray-600 dark:text-slate-400">
+        아직 회원이 아니신가요?
         <a href="/signup" class="text-blue-600 dark:text-blue-400 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium transition-colors">회원가입</a>
-        <span>|</span>
-        <a href="/" class="text-blue-600 dark:text-blue-400 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium transition-colors">메인으로</a>
-        <span>|</span>
-        <a href="/admin/login" class="text-blue-600 dark:text-blue-400 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium transition-colors">관리자</a>
     </div>
 </div>
 
