@@ -6,7 +6,7 @@
     <title><?= $title ?? 'HaruCMS' ?></title>
 
     <!-- Tailwind CSS + DaisyUI -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.5.5/daisyui.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
