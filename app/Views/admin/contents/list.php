@@ -38,53 +38,25 @@ ob_start();
     </div>
     <?php endif; ?>
 
-    <!-- Stats Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-sm font-medium text-gray-600 dark:text-slate-400">전체 컨텐츠</p>
-                    <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1"><?= number_format($totalContents ?? 0) ?></p>
-                </div>
-                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-sm font-medium text-gray-600 dark:text-slate-400">공개 중</p>
-                    <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">
-                        <?php
-                        $published = array_filter($contents ?? [], fn($c) => $c['status'] === 'published');
-                        echo number_format(count($published));
-                        ?>
-                    </p>
-                </div>
-                <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
-                    <svg class="w-6 h-6 text-emerald-600 dark:text-emerald-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-sm font-medium text-gray-600 dark:text-slate-400">비공개</p>
-                    <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">
-                        <?php
-                        $draft = array_filter($contents ?? [], fn($c) => $c['status'] === 'draft');
-                        echo number_format(count($draft));
-                        ?>
-                    </p>
-                </div>
-                <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
-                    <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                </div>
-            </div>
-        </div>
+    <!-- Status Filter Tabs -->
+    <?php
+    $currentStatus = $_GET['status'] ?? 'all';
+    $publishedCount = $stats['published'] ?? 0;
+    $draftCount = $stats['draft'] ?? 0;
+    ?>
+    <div class="mb-6 flex items-center gap-2">
+        <a href="/admin/contents?status=all<?= isset($_GET['page']) ? '&page=' . $_GET['page'] : '' ?>"
+           class="px-3 py-1.5 text-sm font-medium rounded-lg transition-colors <?= $currentStatus === 'all' ? 'bg-blue-600 text-white' : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-300 border border-gray-300 dark:border-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700' ?>">
+            전체 <span class="ml-1 text-xs opacity-75">(<?= number_format($totalContents ?? 0) ?>)</span>
+        </a>
+        <a href="/admin/contents?status=published<?= isset($_GET['page']) ? '&page=' . $_GET['page'] : '' ?>"
+           class="px-3 py-1.5 text-sm font-medium rounded-lg transition-colors <?= $currentStatus === 'published' ? 'bg-emerald-600 text-white' : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-300 border border-gray-300 dark:border-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700' ?>">
+            공개중 <span class="ml-1 text-xs opacity-75">(<?= number_format($publishedCount) ?>)</span>
+        </a>
+        <a href="/admin/contents?status=draft<?= isset($_GET['page']) ? '&page=' . $_GET['page'] : '' ?>"
+           class="px-3 py-1.5 text-sm font-medium rounded-lg transition-colors <?= $currentStatus === 'draft' ? 'bg-amber-600 text-white' : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-300 border border-gray-300 dark:border-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700' ?>">
+            비공개 <span class="ml-1 text-xs opacity-75">(<?= number_format($draftCount) ?>)</span>
+        </a>
     </div>
 
     <!-- Contents Table -->
@@ -178,8 +150,11 @@ ob_start();
                     총 <span class="font-medium text-gray-900 dark:text-white"><?= number_format($totalContents) ?></span>개의 컨텐츠
                 </div>
                 <div class="flex items-center gap-2">
+                    <?php
+                    $statusParam = isset($_GET['status']) && $_GET['status'] !== 'all' ? '&status=' . $_GET['status'] : '';
+                    ?>
                     <?php if ($pagination['current_page'] > 1): ?>
-                    <a href="?page=<?= $pagination['current_page'] - 1 ?>" class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+                    <a href="?page=<?= $pagination['current_page'] - 1 ?><?= $statusParam ?>" class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
                         이전
                     </a>
                     <?php endif; ?>
@@ -189,7 +164,7 @@ ob_start();
                     </span>
 
                     <?php if ($pagination['current_page'] < $pagination['total_pages']): ?>
-                    <a href="?page=<?= $pagination['current_page'] + 1 ?>" class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+                    <a href="?page=<?= $pagination['current_page'] + 1 ?><?= $statusParam ?>" class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
                         다음
                     </a>
                     <?php endif; ?>

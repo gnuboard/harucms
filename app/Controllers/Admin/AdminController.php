@@ -313,8 +313,22 @@ class AdminController
         $perPage = 20;
         $offset = ($page - 1) * $perPage;
 
-        $contents = $this->contentModel->getAll('all', $perPage, $offset);
-        $totalContents = $this->contentModel->count();
+        // 상태 필터
+        $status = isset($_GET['status']) && in_array($_GET['status'], ['published', 'draft'])
+            ? $_GET['status']
+            : 'all';
+
+        // 상태별 통계 조회
+        $stats = [
+            'published' => $this->contentModel->countByStatus('published'),
+            'draft' => $this->contentModel->countByStatus('draft')
+        ];
+
+        // 필터링된 컨텐츠 조회
+        $contents = $this->contentModel->getAll($status, $perPage, $offset);
+        $totalContents = $status === 'all'
+            ? $this->contentModel->count()
+            : $this->contentModel->countByStatus($status);
         $pagination = Helper::paginate($totalContents, $perPage, $page);
 
         ob_start();

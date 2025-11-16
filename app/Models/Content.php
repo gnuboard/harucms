@@ -74,6 +74,16 @@ class Content
     }
 
     /**
+     * 상태별 컨텐츠 수 조회
+     */
+    public function countByStatus(string $status): int
+    {
+        $sql = "SELECT COUNT(*) as count FROM contents WHERE status = ?";
+        $result = $this->db->fetchOne($sql, [$status]);
+        return (int)($result['count'] ?? 0);
+    }
+
+    /**
      * 컨텐츠 생성
      */
     public function create(array $data): int
