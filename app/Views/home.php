@@ -23,7 +23,7 @@ ob_start();
                 <?php if (Helper::isLoggedIn()): ?>
                     <div class="inline-flex items-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-xl border border-white/30 rounded-full text-white font-semibold shadow-lg">
                         <span class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-lg">👋</span>
-                        <span><strong><?= htmlspecialchars(Helper::userNickname()) ?></strong>님 환영합니다!</span>
+                        <span><strong><?= htmlspecialchars(Helper::userNickname() ?? '사용자') ?></strong>님 환영합니다!</span>
                     </div>
                 <?php else: ?>
                     <div class="flex flex-wrap gap-4 justify-center mt-8">
