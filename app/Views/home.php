@@ -10,9 +10,9 @@ ob_start();
     <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
         <!-- Announcement Banner -->
         <div class="flex justify-center">
-            <a class="inline-flex items-center gap-x-2 bg-white border border-gray-200 text-xs text-gray-600 p-2 px-3 rounded-full transition hover:border-gray-300 focus:outline-none focus:border-gray-300 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:border-neutral-600 dark:focus:border-neutral-600" href="#">
+            <a class="inline-flex items-center gap-x-2 bg-white border border-gray-200 text-xs text-gray-600 p-2 px-3 rounded-full transition hover:border-gray-300 focus:outline-none focus:border-gray-300 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:hover:border-slate-500 dark:focus:border-slate-500" href="#">
                 <span class="inline-flex items-center gap-x-2">
-                    <span class="border-s border-gray-200 text-blue-600 ps-2 dark:text-blue-500 dark:border-neutral-700">최신 버전 출시</span>
+                    <span class="border-s border-gray-200 text-blue-600 ps-2 dark:text-blue-400 dark:border-slate-500">최신 버전 출시</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                 </span>
             </a>
@@ -20,15 +20,15 @@ ob_start();
 
         <!-- Title -->
         <div class="mt-5 max-w-2xl text-center mx-auto">
-            <h1 class="block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl dark:text-neutral-200">
+            <h1 class="block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl dark:text-slate-50">
                 HaruCMS
-                <span class="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent">로 시작하세요</span>
+                <span class="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent dark:from-blue-400 dark:to-violet-400">로 시작하세요</span>
             </h1>
         </div>
 
         <!-- Description -->
         <div class="mt-5 max-w-3xl text-center mx-auto">
-            <p class="text-lg text-gray-600 dark:text-neutral-400">경량, 빠름, 그리고 강력한 PHP CMS 솔루션으로 당신의 웹사이트를 완성하세요</p>
+            <p class="text-lg text-gray-600 dark:text-slate-300">경량, 빠름, 그리고 강력한 PHP CMS 솔루션으로 당신의 웹사이트를 완성하세요</p>
         </div>
 
         <!-- Buttons -->
@@ -45,7 +45,7 @@ ob_start();
                     시작하기
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                 </a>
-                <a class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" href="/signup">
+                <a class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:border-slate-600 dark:text-slate-100 dark:hover:bg-slate-700 dark:focus:bg-slate-700" href="/signup">
                     회원가입
                 </a>
             </div>
