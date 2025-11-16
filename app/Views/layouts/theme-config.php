@@ -43,57 +43,58 @@
 
 <style>
     :root {
-        /* 더 모던한 색상 팔레트 - Zinc 기반 */
+        /* 모던한 블루 계열 색상 팔레트 */
         --background: 0 0% 100%;
-        --foreground: 240 10% 3.9%;
+        --foreground: 222.2 84% 4.9%;
         --card: 0 0% 100%;
-        --card-foreground: 240 10% 3.9%;
-        --muted: 240 4.8% 95.9%;
-        --muted-foreground: 240 3.8% 46.1%;
-        --border: 240 5.9% 90%;
-        --input: 240 5.9% 90%;
+        --card-foreground: 222.2 84% 4.9%;
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
 
-        /* 모던한 블루-바이올렛 primary */
-        --primary: 262.1 83.3% 57.8%;
-        --primary-foreground: 210 20% 98%;
+        /* 생동감 있는 모던 블루 primary */
+        --primary: 221.2 83.2% 53.3%;
+        --primary-foreground: 210 40% 98%;
 
-        --secondary: 240 4.8% 95.9%;
-        --secondary-foreground: 240 5.9% 10%;
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
 
-        /* 호버 효과를 위한 accent */
-        --accent: 240 4.8% 95.9%;
-        --accent-foreground: 240 5.9% 10%;
+        /* 밝은 블루 accent */
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
 
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 0 0% 98%;
 
-        --ring: 262.1 83.3% 57.8%;
+        --ring: 221.2 83.2% 53.3%;
     }
 
     .dark {
-        --background: 224 71.4% 4.1%;
-        --foreground: 210 20% 98%;
-        --card: 224 71.4% 4.1%;
-        --card-foreground: 210 20% 98%;
-        --muted: 215 27.9% 16.9%;
-        --muted-foreground: 217.9 10.6% 64.9%;
-        --border: 215 27.9% 16.9%;
-        --input: 215 27.9% 16.9%;
+        /* 깊고 세련된 다크 블루 배경 */
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
 
-        /* 다크모드에서 더 밝고 선명한 primary */
-        --primary: 263.4 70% 50.4%;
-        --primary-foreground: 210 20% 98%;
+        /* 다크모드에서 더욱 선명한 블루 */
+        --primary: 217.2 91.2% 59.8%;
+        --primary-foreground: 222.2 47.4% 11.2%;
 
-        --secondary: 215 27.9% 16.9%;
-        --secondary-foreground: 210 20% 98%;
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
 
-        --accent: 215 27.9% 16.9%;
-        --accent-foreground: 210 20% 98%;
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
 
         --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
+        --destructive-foreground: 210 40% 98%;
 
-        --ring: 263.4 70% 50.4%;
+        --ring: 224.3 76.3% 48%;
     }
 
     /* 공통 유틸리티 */
