@@ -16,7 +16,8 @@
       "Bash(apache2:*)",
       "Bash(httpd:*)",
       "Bash(rm:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []

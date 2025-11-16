@@ -1,5 +1,5 @@
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS (Local) -->
+<script src="/assets/js/tailwind.js"></script>
 
 <!-- Preline UI -->
 <link rel="stylesheet" href="https://unpkg.com/preline/dist/preline.css">
