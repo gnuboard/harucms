@@ -1,6 +1,10 @@
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
 
+<!-- Preline UI -->
+<link rel="stylesheet" href="https://unpkg.com/preline/dist/preline.css">
+<script src="https://unpkg.com/preline/dist/preline.js"></script>
+
 <style>
     * {
         margin: 0;
