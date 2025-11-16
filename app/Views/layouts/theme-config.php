@@ -1,10 +1,6 @@
 <!-- Tailwind CSS (Local) -->
 <script src="/assets/js/tailwind.js"></script>
 
-<!-- Preline UI -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline@2.0.3/dist/preline.min.css">
-<script src="https://cdn.jsdelivr.net/npm/preline@2.0.3/dist/preline.min.js"></script>
-
 <style>
     * {
         margin: 0;
