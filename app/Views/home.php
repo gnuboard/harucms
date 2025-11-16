@@ -6,13 +6,13 @@ ob_start();
 <?php use App\Core\Helper; ?>
 
 <!-- Hero Section with Gradient & Animation -->
-<div class="relative overflow-hidden before:absolute before:top-0 before:start-1/2 before:bg-[url('https://preline.co/assets/svg/examples/polygon-bg-element.svg')] dark:before:bg-[url('https://preline.co/assets/svg/examples-dark/polygon-bg-element.svg')] before:bg-no-repeat before:bg-top before:bg-cover before:size-full before:-z-[1] before:transform before:-translate-x-1/2">
+<div class="relative overflow-hidden bg-white dark:bg-gradient-to-b dark:from-slate-900 dark:to-slate-800 before:absolute before:top-0 before:start-1/2 before:bg-[url('https://preline.co/assets/svg/examples/polygon-bg-element.svg')] dark:before:bg-[url('https://preline.co/assets/svg/examples-dark/polygon-bg-element.svg')] before:bg-no-repeat before:bg-top before:bg-cover before:size-full before:-z-[1] before:transform before:-translate-x-1/2 dark:before:opacity-30">
     <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
         <!-- Announcement Banner -->
         <div class="flex justify-center">
-            <a class="inline-flex items-center gap-x-2 bg-white border border-gray-200 text-xs text-gray-600 p-2 px-3 rounded-full transition hover:border-gray-300 focus:outline-none focus:border-gray-300 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:hover:border-slate-500 dark:focus:border-slate-500" href="#">
+            <a class="inline-flex items-center gap-x-2 bg-white border border-gray-200 text-xs text-gray-600 p-2 px-3 rounded-full transition hover:border-gray-300 focus:outline-none focus:border-gray-300 dark:bg-gradient-to-r dark:from-blue-600 dark:to-violet-600 dark:border-transparent dark:text-white dark:hover:shadow-lg dark:hover:shadow-blue-500/30" href="#">
                 <span class="inline-flex items-center gap-x-2">
-                    <span class="border-s border-gray-200 text-blue-600 ps-2 dark:text-blue-400 dark:border-slate-500">최신 버전 출시</span>
+                    <span class="border-s border-gray-200 text-blue-600 ps-2 dark:text-white dark:border-blue-400">최신 버전 출시</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                 </span>
             </a>
@@ -21,31 +21,32 @@ ob_start();
         <!-- Title -->
         <div class="mt-5 max-w-2xl text-center mx-auto">
             <h1 class="block font-bold text-4xl md:text-5xl lg:text-6xl">
-                <span class="text-gray-800 dark:text-white">HaruCMS</span>
-                <span class="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent dark:from-blue-400 dark:to-violet-400">로 시작하세요</span>
+                <span class="text-gray-800 dark:text-white drop-shadow-sm">HaruCMS</span>
+                <br class="sm:hidden">
+                <span class="bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600 text-transparent dark:from-blue-400 dark:to-violet-400 dark:drop-shadow-[0_0_15px_rgba(96,165,250,0.5)]">로 시작하세요</span>
             </h1>
         </div>
 
         <!-- Description -->
         <div class="mt-5 max-w-3xl text-center mx-auto">
-            <p class="text-lg text-gray-600 dark:text-slate-300">경량, 빠름, 그리고 강력한 PHP CMS 솔루션으로 당신의 웹사이트를 완성하세요</p>
+            <p class="text-lg text-gray-600 dark:text-slate-200">경량, 빠름, 그리고 강력한 PHP CMS 솔루션으로 당신의 웹사이트를 완성하세요</p>
         </div>
 
         <!-- Buttons -->
         <?php if (Helper::isLoggedIn()): ?>
             <div class="mt-8 gap-3 flex justify-center">
-                <div class="inline-flex items-center gap-x-3 bg-gradient-to-tl from-blue-600 to-violet-600 border border-transparent text-white text-sm font-medium rounded-full py-3 px-6 hover:from-violet-600 hover:to-blue-600">
+                <div class="inline-flex items-center gap-x-3 bg-gradient-to-r from-blue-600 to-violet-600 border border-transparent text-white text-sm font-medium rounded-full py-3 px-6 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-violet-500/40 transition-all duration-300 dark:shadow-blue-500/50 dark:hover:shadow-violet-500/60">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     <strong><?= htmlspecialchars(Helper::userNickname() ?? '사용자') ?></strong>님 환영합니다!
                 </div>
             </div>
         <?php else: ?>
             <div class="mt-8 gap-3 flex justify-center">
-                <a class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" href="/login">
+                <a class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/50 transition-all duration-300 dark:shadow-blue-500/50 dark:hover:shadow-blue-400/70" href="/login">
                     시작하기
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                 </a>
-                <a class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:border-slate-600 dark:text-slate-100 dark:hover:bg-slate-700 dark:focus:bg-slate-700" href="/signup">
+                <a class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-all duration-300 dark:border-blue-500/30 dark:bg-slate-800/50 dark:text-white dark:hover:bg-slate-700 dark:hover:border-blue-500/60 dark:focus:bg-slate-700" href="/signup">
                     회원가입
                 </a>
             </div>
