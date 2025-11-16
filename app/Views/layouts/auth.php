@@ -29,6 +29,19 @@
     <?php if (isset($additional_css)): ?>
     <style><?= $additional_css ?></style>
     <?php endif; ?>
+
+    <!-- 테마 로드 스크립트 (FOUC 방지) -->
+    <script>
+        // 페이지 로드 전에 테마 적용
+        (function() {
+            try {
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } catch (e) {
+                console.error('테마 로드 실패:', e);
+            }
+        })();
+    </script>
 </head>
 <body class="gradient-bg min-h-screen flex items-center justify-center p-5">
     <div class="card w-full max-w-lg bg-base-100 shadow-2xl">
