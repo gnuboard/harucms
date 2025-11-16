@@ -16,7 +16,7 @@
         }
 
         .auth-header p {
-            color: hsl(var(--muted-foreground));
+            color: var(--muted-foreground);
             text-align: center;
         }
 
@@ -34,32 +34,32 @@
         .form-group input {
             width: 100%;
             padding: 0.5rem 0.75rem;
-            border: 1px solid hsl(var(--border));
+            border: 1px solid var(--border);
             border-radius: 0.375rem;
-            background-color: hsl(var(--background));
-            color: hsl(var(--foreground));
+            background-color: var(--background);
+            color: var(--foreground);
             font-size: 0.875rem;
             transition: all 0.2s;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: hsl(var(--ring));
-            box-shadow: 0 0 0 3px hsla(var(--ring), 0.1);
+            border-color: var(--ring);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 10%, transparent);
         }
 
         .form-group small {
             display: block;
             margin-top: 0.25rem;
             font-size: 0.75rem;
-            color: hsl(var(--muted-foreground));
+            color: var(--muted-foreground);
         }
 
         .btn {
             width: 100%;
             padding: 0.625rem 1rem;
-            background-color: hsl(var(--primary));
-            color: hsl(var(--primary-foreground));
+            background-color: var(--primary);
+            color: var(--primary-foreground);
             border: none;
             border-radius: 0.375rem;
             font-size: 0.875rem;
@@ -74,18 +74,18 @@
 
         .btn:focus-visible {
             outline: none;
-            box-shadow: 0 0 0 3px hsla(var(--ring), 0.3);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 30%, transparent);
         }
 
         .links {
             text-align: center;
             margin-top: 1.5rem;
             font-size: 0.875rem;
-            color: hsl(var(--muted-foreground));
+            color: var(--muted-foreground);
         }
 
         .links a {
-            color: hsl(var(--primary));
+            color: var(--primary);
             text-decoration: none;
             transition: all 0.2s;
         }
@@ -102,27 +102,27 @@
         }
 
         .alert-success {
-            background-color: hsl(142.1 76.2% 96.3%);
-            color: hsl(142.1 76.2% 26.3%);
-            border: 1px solid hsl(142.1 76.2% 86.3%);
+            background-color: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
         }
 
         .alert-error {
-            background-color: hsl(0 84.2% 96.5%);
-            color: hsl(0 84.2% 40.2%);
-            border: 1px solid hsl(0 84.2% 86.5%);
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
         }
 
         .dark .alert-success {
-            background-color: hsl(142.1 76.2% 13.9%);
-            color: hsl(142.1 76.2% 76.3%);
-            border-color: hsl(142.1 76.2% 23.9%);
+            background-color: #14532d;
+            color: #bbf7d0;
+            border-color: #166534;
         }
 
         .dark .alert-error {
-            background-color: hsl(0 84.2% 13.9%);
-            color: hsl(0 84.2% 76.3%);
-            border-color: hsl(0 84.2% 23.9%);
+            background-color: #7f1d1d;
+            color: #fecaca;
+            border-color: #991b1b;
         }
     </style>
 </head>

@@ -2,8 +2,8 @@
 $title = '마이페이지';
 $additional_css = '
 .user-info {
-    background-color: hsl(var(--muted));
-    border: 1px solid hsl(var(--border));
+    background-color: var(--muted);
+    border: 1px solid var(--border);
     padding: 1.5rem;
     border-radius: 0.5rem;
     margin-bottom: 2rem;
@@ -12,25 +12,25 @@ $additional_css = '
     display: flex;
     justify-content: space-between;
     padding: 0.75rem 0;
-    border-bottom: 1px solid hsl(var(--border));
+    border-bottom: 1px solid var(--border);
 }
 .user-info-item:last-child {
     border-bottom: none;
 }
 .user-info-item label {
     font-weight: 600;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
 }
 .user-info-item span {
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
 }
 .section-title {
     font-size: 1.125rem;
     font-weight: 600;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid hsl(var(--border));
+    border-bottom: 2px solid var(--border);
 }
 .form-group {
     margin-bottom: 1.25rem;
@@ -38,39 +38,39 @@ $additional_css = '
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: hsl(var(--foreground));
+    color: var(--foreground);
     font-weight: 500;
     font-size: 0.875rem;
 }
 .form-group input {
     width: 100%;
     padding: 0.5rem 0.75rem;
-    border: 1px solid hsl(var(--border));
+    border: 1px solid var(--border);
     border-radius: 0.375rem;
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: var(--background);
+    color: var(--foreground);
     font-size: 0.875rem;
     transition: all 0.2s;
 }
 .form-group input:focus {
     outline: none;
-    border-color: hsl(var(--ring));
-    box-shadow: 0 0 0 3px hsla(var(--ring), 0.1);
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 10%, transparent);
 }
 .form-group input:read-only {
-    background-color: hsl(var(--muted));
-    color: hsl(var(--muted-foreground));
+    background-color: var(--muted);
+    color: var(--muted-foreground);
 }
 .form-group small {
     display: block;
     margin-top: 0.25rem;
-    color: hsl(var(--muted-foreground));
+    color: var(--muted-foreground);
     font-size: 0.75rem;
 }
 .btn {
     width: 100%;
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    background-color: var(--primary);
+    color: var(--primary-foreground);
     border: none;
     padding: 0.625rem 1rem;
     border-radius: 0.375rem;
@@ -85,7 +85,7 @@ $additional_css = '
 }
 .btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px hsla(var(--ring), 0.3);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 30%, transparent);
 }
 .alert {
     padding: 0.75rem 1rem;
@@ -94,24 +94,24 @@ $additional_css = '
     font-size: 0.875rem;
 }
 .alert-success {
-    background-color: hsl(142.1 76.2% 96.3%);
-    color: hsl(142.1 76.2% 26.3%);
-    border: 1px solid hsl(142.1 76.2% 86.3%);
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
 }
 .alert-error {
-    background-color: hsl(0 84.2% 96.5%);
-    color: hsl(0 84.2% 40.2%);
-    border: 1px solid hsl(0 84.2% 86.5%);
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
 }
 .dark .alert-success {
-    background-color: hsl(142.1 76.2% 13.9%);
-    color: hsl(142.1 76.2% 76.3%);
-    border-color: hsl(142.1 76.2% 23.9%);
+    background-color: #14532d;
+    color: #bbf7d0;
+    border-color: #166534;
 }
 .dark .alert-error {
-    background-color: hsl(0 84.2% 13.9%);
-    color: hsl(0 84.2% 76.3%);
-    border-color: hsl(0 84.2% 23.9%);
+    background-color: #7f1d1d;
+    color: #fecaca;
+    border-color: #991b1b;
 }
 ';
 ob_start();
