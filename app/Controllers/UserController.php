@@ -181,16 +181,42 @@ class UserController
         $userId = Helper::userId();
         $data = [];
 
-        if (!empty($_POST['email'])) {
-            $data['email'] = trim($_POST['email']);
-        }
+        // 이메일 변경 시도 방지 (읽기 전용)
+        // if (!empty($_POST['email'])) {
+        //     $data['email'] = trim($_POST['email']);
+        // }
 
+        // 닉네임 변경
         if (!empty($_POST['nickname'])) {
-            $data['nickname'] = trim($_POST['nickname']);
+            $newNickname = trim($_POST['nickname']);
+            $currentUser = $this->userModel->findById($userId);
+
+            // 현재 닉네임과 다를 때만 중복 체크
+            if ($newNickname !== $currentUser['nickname']) {
+                // 닉네임 중복 체크
+                $existingUser = $this->userModel->findByNickname($newNickname);
+                if ($existingUser) {
+                    Helper::flash('error', '이미 사용중인 닉네임입니다.');
+                    Helper::redirect('/mypage');
+                }
+
+                // 닉네임 길이 체크
+                if (strlen($newNickname) < 2 || strlen($newNickname) > 20) {
+                    Helper::flash('error', '닉네임은 2자 이상 20자 이하여야 합니다.');
+                    Helper::redirect('/mypage');
+                }
+
+                $data['nickname'] = $newNickname;
+            }
         }
 
+        // 비밀번호 변경
         if (!empty($_POST['password'])) {
             if ($_POST['password'] === $_POST['password_confirm']) {
+                if (strlen($_POST['password']) < 6) {
+                    Helper::flash('error', '비밀번호는 최소 6자 이상이어야 합니다.');
+                    Helper::redirect('/mypage');
+                }
                 $data['password'] = $_POST['password'];
             } else {
                 Helper::flash('error', '비밀번호가 일치하지 않습니다.');
@@ -198,6 +224,13 @@ class UserController
             }
         }
 
+        // 변경할 내용이 없는 경우
+        if (empty($data)) {
+            Helper::flash('error', '변경할 내용이 없습니다.');
+            Helper::redirect('/mypage');
+        }
+
+        // 업데이트 실행
         if ($this->userModel->update($userId, $data)) {
             // 세션 정보 업데이트
             if (isset($data['nickname'])) {
@@ -206,7 +239,7 @@ class UserController
 
             Helper::flash('success', '프로필이 수정되었습니다.');
         } else {
-            Helper::flash('error', '프로필 수정에 실패했습니다.');
+            Helper::flash('error', '프로필 수정 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
         }
 
         Helper::redirect('/mypage');
