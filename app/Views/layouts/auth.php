@@ -8,6 +8,7 @@
     <!-- Tailwind CSS + DaisyUI -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.5.5/daisyui.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daisyui@5.5.5/index.min.js"></script>
 
     <style>
         /* 커스텀 그라디언트 배경 */
