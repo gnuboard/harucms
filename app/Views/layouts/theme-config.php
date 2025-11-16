@@ -36,18 +36,18 @@
 
     /* 다크 모드 */
     .dark {
-        --bg-main: #0f172a;
-        --bg-subtle: #1e293b;
-        --bg-muted: #334155;
-        --text-primary: #f1f5f9;
-        --text-secondary: #cbd5e1;
-        --text-muted: #94a3b8;
-        --border-color: #334155;
-        --primary: #3b82f6;
-        --primary-hover: #60a5fa;
+        --bg-main: #1e293b;
+        --bg-subtle: #334155;
+        --bg-muted: #475569;
+        --text-primary: #f8fafc;
+        --text-secondary: #e2e8f0;
+        --text-muted: #cbd5e1;
+        --border-color: #475569;
+        --primary: #60a5fa;
+        --primary-hover: #93c5fd;
         --primary-text: #ffffff;
-        --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3);
-        --card-shadow-hover: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+        --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+        --card-shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.5);
     }
 
     /* Tailwind 커스텀 클래스 오버라이드 */
