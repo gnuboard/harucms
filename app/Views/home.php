@@ -20,8 +20,8 @@ ob_start();
 
         <!-- Title -->
         <div class="mt-5 max-w-2xl text-center mx-auto">
-            <h1 class="block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl dark:text-slate-50">
-                HaruCMS
+            <h1 class="block font-bold text-4xl md:text-5xl lg:text-6xl">
+                <span class="text-gray-800 dark:text-white">HaruCMS</span>
                 <span class="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent dark:from-blue-400 dark:to-violet-400">로 시작하세요</span>
             </h1>
         </div>
