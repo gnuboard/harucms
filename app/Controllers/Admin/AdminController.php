@@ -359,8 +359,7 @@ class AdminController
             'slug' => Helper::slug($_POST['slug'] ?? ''),
             'title' => $_POST['title'] ?? '',
             'content' => $_POST['content'] ?? '',
-            'status' => $_POST['status'] ?? 'draft',
-            'created_by' => Helper::userId()
+            'status' => $_POST['status'] ?? 'draft'
         ];
 
         if (empty($data['slug']) || empty($data['title'])) {

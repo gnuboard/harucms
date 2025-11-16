@@ -69,7 +69,6 @@ ob_start();
                         <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">URL 슬러그</th>
                         <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">제목</th>
                         <th class="hidden lg:table-cell px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">상태</th>
-                        <th class="hidden lg:table-cell px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">작성자</th>
                         <th class="hidden lg:table-cell px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">수정일</th>
                         <th class="px-6 py-4 text-right text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">관리</th>
                     </tr>
@@ -77,7 +76,7 @@ ob_start();
                 <tbody class="divide-y divide-gray-200 dark:divide-slate-700">
                     <?php if (empty($contents)): ?>
                     <tr>
-                        <td colspan="7" class="px-6 py-16 text-center">
+                        <td colspan="6" class="px-6 py-16 text-center">
                             <div class="flex flex-col items-center justify-center">
                                 <svg class="w-16 h-16 text-gray-300 dark:text-slate-600 mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                                 <p class="text-gray-500 dark:text-slate-400 text-sm">등록된 컨텐츠가 없습니다</p>
@@ -116,9 +115,6 @@ ob_start();
                                     비공개
                                 </span>
                                 <?php endif; ?>
-                            </td>
-                            <td class="hidden lg:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-slate-400">
-                                <?= htmlspecialchars($content['author_name'] ?? $content['email'] ?? '-') ?>
                             </td>
                             <td class="hidden lg:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-slate-400">
                                 <?= Helper::formatDate($content['updated_at'], 'Y-m-d H:i') ?>

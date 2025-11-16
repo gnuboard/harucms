@@ -63,14 +63,11 @@ CREATE TABLE IF NOT EXISTS `contents` (
   `title` varchar(200) NOT NULL,
   `content` longtext,
   `status` enum('draft','published') NOT NULL DEFAULT 'draft',
-  `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`),
-  KEY `status` (`status`),
-  KEY `created_by` (`created_by`),
-  FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
+  KEY `status` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 게시판 테이블

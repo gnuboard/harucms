@@ -31,11 +31,7 @@ class Content
      */
     public function findById(int $id): ?array
     {
-        $sql = "SELECT c.*, u.email, u.name as author_name
-                FROM contents c
-                LEFT JOIN users u ON c.created_by = u.id
-                WHERE c.id = ?";
-
+        $sql = "SELECT * FROM contents WHERE id = ?";
         return $this->db->fetchOne($sql, [$id]);
     }
 
@@ -44,14 +40,12 @@ class Content
      */
     public function getAll(string $status = 'all', int $limit = 100, int $offset = 0): array
     {
-        $where = $status === 'all' ? '' : "WHERE c.status = ?";
+        $where = $status === 'all' ? '' : "WHERE status = ?";
         $params = $status === 'all' ? [] : [$status];
 
-        $sql = "SELECT c.*, u.email, u.name as author_name
-                FROM contents c
-                LEFT JOIN users u ON c.created_by = u.id
+        $sql = "SELECT * FROM contents
                 {$where}
-                ORDER BY c.updated_at DESC
+                ORDER BY updated_at DESC
                 LIMIT ? OFFSET ?";
 
         $params[] = $limit;
@@ -88,15 +82,14 @@ class Content
      */
     public function create(array $data): int
     {
-        $sql = "INSERT INTO contents (slug, title, content, status, created_by)
-                VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO contents (slug, title, content, status)
+                VALUES (?, ?, ?, ?)";
 
         $params = [
             $data['slug'],
             $data['title'],
             $data['content'] ?? '',
-            $data['status'] ?? 'draft',
-            $data['created_by'] ?? null
+            $data['status'] ?? 'draft'
         ];
 
         $this->db->execute($sql, $params);
