@@ -65,12 +65,12 @@ ob_start();
             <table class="w-full">
                 <thead class="bg-gray-50 dark:bg-slate-900/50 border-b border-gray-200 dark:border-slate-700">
                     <tr>
-                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">ID</th>
+                        <th class="hidden lg:table-cell px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">ID</th>
                         <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">URL 슬러그</th>
                         <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">제목</th>
-                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">상태</th>
-                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">작성자</th>
-                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">수정일</th>
+                        <th class="hidden lg:table-cell px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">상태</th>
+                        <th class="hidden lg:table-cell px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">작성자</th>
+                        <th class="hidden lg:table-cell px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">수정일</th>
                         <th class="px-6 py-4 text-right text-xs font-semibold text-gray-600 dark:text-slate-400 uppercase tracking-wider">관리</th>
                     </tr>
                 </thead>
@@ -91,8 +91,8 @@ ob_start();
                     <?php else: ?>
                         <?php foreach ($contents as $content): ?>
                         <tr class="hover:bg-gray-50 dark:hover:bg-slate-900/50 transition-colors">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                                #<?= $content['id'] ?>
+                            <td class="hidden lg:table-cell px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                                <?= $content['id'] ?>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <code class="px-2 py-1 text-xs font-mono bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-slate-300 rounded">
@@ -104,7 +104,7 @@ ob_start();
                                     <?= htmlspecialchars($content['title']) ?>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="hidden lg:table-cell px-6 py-4 whitespace-nowrap">
                                 <?php if ($content['status'] === 'published'): ?>
                                 <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400">
                                     <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -117,21 +117,21 @@ ob_start();
                                 </span>
                                 <?php endif; ?>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-slate-400">
+                            <td class="hidden lg:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-slate-400">
                                 <?= htmlspecialchars($content['author_name'] ?? $content['email'] ?? '-') ?>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-slate-400">
+                            <td class="hidden lg:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-slate-400">
                                 <?= Helper::formatDate($content['updated_at'], 'Y-m-d H:i') ?>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <div class="flex items-center justify-end gap-2">
                                     <a href="/<?= htmlspecialchars($content['slug']) ?>" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-900/30 dark:hover:bg-emerald-900/50 text-emerald-700 dark:text-emerald-400 rounded-lg transition-colors text-xs font-medium">
                                         <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                        보기
+                                        <span class="hidden sm:inline">보기</span>
                                     </a>
                                     <a href="/admin/contents/<?= $content['id'] ?>/edit" class="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-100 hover:bg-blue-200 dark:bg-blue-900/30 dark:hover:bg-blue-900/50 text-blue-700 dark:text-blue-400 rounded-lg transition-colors text-xs font-medium">
                                         <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                                        수정
+                                        <span class="hidden sm:inline">수정</span>
                                     </a>
                                 </div>
                             </td>
