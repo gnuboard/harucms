@@ -73,6 +73,14 @@
             --ring: 240 4.9% 83.9%;
         }
 
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
         .auth-header h1 {
             font-size: 1.875rem;
             font-weight: 700;
@@ -83,7 +91,6 @@
         .auth-header p {
             color: hsl(var(--muted-foreground));
             text-align: center;
-            margin-bottom: 2rem;
         }
 
         .form-group {
