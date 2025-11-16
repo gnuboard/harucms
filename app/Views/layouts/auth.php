@@ -1,144 +1,51 @@
 <!DOCTYPE html>
-<html lang="ko" class="light">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?? 'HaruCMS' ?></title>
 
     <?php require __DIR__ . '/theme-config.php'; ?>
-
-    <style>
-        .auth-header h1 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .auth-header p {
-            color: var(--text-muted);
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.625rem 0.875rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            font-size: 0.875rem;
-            transition: all 0.15s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .form-group small {
-            display: block;
-            margin-top: 0.375rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .btn {
-            width: 100%;
-            padding: 0.625rem 1rem;
-            background-color: var(--primary);
-            color: var(--primary-text);
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-
-        .btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-1px);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .btn:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-        }
-
-        .links {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-
-        .links a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: all 0.15s ease;
-            font-weight: 500;
-        }
-
-        .links a:hover {
-            color: var(--primary-hover);
-            text-decoration: underline;
-        }
-
-        .alert {
-            padding: 0.875rem 1rem;
-            margin-bottom: 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            border: 1px solid;
-        }
-
-        .alert-success {
-            background-color: #dcfce7;
-            color: #166534;
-            border-color: #86efac;
-        }
-
-        .alert-error {
-            background-color: #fee2e2;
-            color: #991b1b;
-            border-color: #fca5a5;
-        }
-
-        .dark .alert-success {
-            background-color: #14532d;
-            color: #bbf7d0;
-            border-color: #166534;
-        }
-
-        .dark .alert-error {
-            background-color: #7f1d1d;
-            color: #fecaca;
-            border-color: #991b1b;
-        }
-    </style>
 </head>
-<body class="min-h-screen bg-background flex items-center justify-center p-5">
-    <div class="w-full max-w-lg bg-background border border-border rounded-lg shadow-sm p-8">
+<body class="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-emerald-50/30 dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center p-5 relative overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-emerald-400/20 dark:bg-emerald-500/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- 테마 전환 버튼 (우측 상단) -->
+    <button onclick="toggleTheme()" class="absolute top-4 right-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 hover:bg-gray-100 dark:hover:bg-slate-800 h-10 w-10 z-50" title="테마 전환">
+        <svg id="theme-icon-light" class="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+        <svg id="theme-icon-dark" class="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+    </button>
+
+    <!-- Auth Card -->
+    <div class="w-full max-w-md bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-gray-200 dark:border-slate-700 rounded-2xl shadow-xl p-8 relative z-10 animate-fade-in">
+        <!-- Logo/Header -->
+        <div class="text-center mb-8">
+            <a href="/" class="inline-block">
+                <h1 class="text-3xl font-bold bg-clip-text bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 text-transparent">HaruCMS</h1>
+            </a>
+        </div>
+
         <?= $content ?>
     </div>
+
+    <!-- 테마 전환 스크립트 -->
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark');
+            const newTheme = isDark ? 'light' : 'dark';
+
+            html.classList.toggle('dark', !isDark);
+            localStorage.setItem('theme', newTheme);
+        }
+    </script>
 </body>
 </html>

@@ -4,23 +4,23 @@ ob_start();
 ?>
 
 <div class="space-y-6">
-    <div class="auth-header">
-        <h1>회원가입</h1>
-        <p>새로운 계정을 만들어보세요</p>
+    <div class="text-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">회원가입</h2>
+        <p class="text-gray-600 dark:text-slate-400">HaruCMS에 가입하고 시작하세요</p>
     </div>
 
     <?php
     use App\Core\Helper;
     if (Helper::hasFlash('error')):
     ?>
-    <div class="alert alert-error">
+    <div class="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 text-sm">
         <?= Helper::getFlash('error') ?>
     </div>
     <?php endif; ?>
 
-    <form method="POST" action="/signup" class="space-y-4">
-        <div class="form-group">
-            <label for="email">이메일 *</label>
+    <form method="POST" action="/signup" class="space-y-5">
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">이메일</label>
             <input
                 type="email"
                 id="email"
@@ -28,53 +28,53 @@ ob_start();
                 required
                 autofocus
                 placeholder="email@example.com"
-                class="w-full"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all"
             >
-            <small>이메일이 로그인 아이디로 사용됩니다</small>
         </div>
 
-        <div class="form-group">
-            <label for="password">비밀번호 *</label>
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">비밀번호</label>
             <input
                 type="password"
                 id="password"
                 name="password"
                 required
                 placeholder="••••••••"
-                class="w-full"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all"
             >
-            <small>최소 6자 이상 입력해주세요</small>
         </div>
 
-        <div class="form-group">
-            <label for="password_confirm">비밀번호 확인 *</label>
+        <div>
+            <label for="password_confirm" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">비밀번호 확인</label>
             <input
                 type="password"
                 id="password_confirm"
                 name="password_confirm"
                 required
                 placeholder="••••••••"
-                class="w-full"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all"
             >
         </div>
 
-        <div class="form-group">
-            <label for="nickname">닉네임 (선택사항)</label>
+        <div>
+            <label for="nickname" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">닉네임 (선택사항)</label>
             <input
                 type="text"
                 id="nickname"
                 name="nickname"
                 placeholder="홍길동"
-                class="w-full"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all"
             >
-            <small>입력하지 않으면 자동으로 생성됩니다 (예: 밝은행복한호랑이)</small>
+            <p class="mt-2 text-xs text-gray-600 dark:text-slate-400">입력하지 않으면 자동으로 생성됩니다 (예: 밝은행복한호랑이)</p>
         </div>
 
-        <button type="submit" class="btn w-full mt-6">가입하기</button>
+        <button type="submit" class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white font-semibold rounded-lg shadow-lg shadow-blue-500/40 hover:shadow-xl hover:shadow-emerald-500/50 dark:shadow-blue-500/30 dark:hover:shadow-emerald-500/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-all duration-300 hover:-translate-y-0.5">
+            가입하기
+        </button>
     </form>
 
-    <div class="links">
-        이미 계정이 있으신가요? <a href="/login">로그인</a>
+    <div class="text-center text-sm text-gray-600 dark:text-slate-400">
+        이미 계정이 있으신가요? <a href="/login" class="text-blue-600 dark:text-blue-400 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium transition-colors">로그인</a>
     </div>
 </div>
 
