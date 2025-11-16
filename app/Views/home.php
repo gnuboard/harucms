@@ -37,7 +37,7 @@ ob_start();
 
         <!-- Description -->
         <div class="mt-6 max-w-2xl text-center mx-auto">
-            <p class="text-lg md:text-xl text-gray-600 dark:text-slate-300 leading-relaxed">경량, 빠름, 그리고 강력한 PHP CMS 솔루션으로<br class="hidden sm:block"/>당신의 웹사이트를 완성하세요</p>
+            <p class="text-lg md:text-xl text-gray-600 dark:text-slate-100 leading-relaxed font-medium">경량, 빠름, 그리고 강력한 PHP CMS 솔루션으로<br class="hidden sm:block"/>당신의 웹사이트를 완성하세요</p>
         </div>
 
         <!-- Buttons -->
