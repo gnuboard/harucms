@@ -261,4 +261,18 @@ class User
         $searchTerm = "%{$keyword}%";
         return $this->db->fetchAll($sql, [$searchTerm, $searchTerm, $limit, $offset]);
     }
+
+    /**
+     * 최근 가입 회원 조회
+     */
+    public function getRecent(int $limit = 10): array
+    {
+        $sql = "SELECT id, email, nickname, created_at
+                FROM users
+                WHERE status = 1
+                ORDER BY created_at DESC
+                LIMIT ?";
+
+        return $this->db->fetchAll($sql, [$limit]);
+    }
 }

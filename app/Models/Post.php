@@ -197,4 +197,20 @@ class Post
         $result = $this->db->fetchOne($sql, [$userId]);
         return (int)($result['count'] ?? 0);
     }
+
+    /**
+     * 최근 게시글 조회 (모든 게시판)
+     */
+    public function getRecent(int $limit = 10): array
+    {
+        $sql = "SELECT p.*, u.nickname, b.name as board_name, b.title as board_title
+                FROM posts p
+                LEFT JOIN users u ON p.user_id = u.id
+                LEFT JOIN boards b ON p.board_id = b.id
+                WHERE p.status = 'active' AND p.is_notice = 0
+                ORDER BY p.created_at DESC
+                LIMIT ?";
+
+        return $this->db->fetchAll($sql, [$limit]);
+    }
 }

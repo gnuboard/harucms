@@ -245,6 +245,106 @@ ob_start();
     </div>
 </div>
 
+<!-- Recent Posts & Users Section -->
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+        <!-- Recent Posts -->
+        <div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl shadow-sm overflow-hidden">
+            <div class="p-4 md:p-6 border-b border-gray-200 dark:border-slate-700">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-x-2">
+                        <svg class="size-6 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        최근 게시글
+                    </h2>
+                    <span class="text-xs text-gray-500 dark:text-slate-400">최신순</span>
+                </div>
+            </div>
+            <div class="divide-y divide-gray-200 dark:divide-slate-700">
+                <?php if (!empty($recentPosts)): ?>
+                    <?php foreach ($recentPosts as $post): ?>
+                    <a href="/boards/<?= htmlspecialchars($post['board_name']) ?>/<?= $post['id'] ?>" class="group flex items-start gap-x-3 p-4 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors">
+                        <div class="flex-shrink-0 mt-1">
+                            <span class="inline-flex items-center justify-center size-8 bg-gradient-to-br from-blue-600 to-emerald-600 rounded-lg text-white text-xs font-semibold group-hover:scale-110 transition-transform">
+                                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+                            </span>
+                        </div>
+                        <div class="flex-grow min-w-0">
+                            <div class="flex items-center gap-x-2 mb-1">
+                                <span class="inline-flex items-center gap-x-1 py-0.5 px-2 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+                                    <?= htmlspecialchars($post['board_title'] ?? $post['board_name']) ?>
+                                </span>
+                                <span class="text-xs text-gray-500 dark:text-slate-400">
+                                    <?= Helper::timeAgo($post['created_at']) ?>
+                                </span>
+                            </div>
+                            <h3 class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">
+                                <?= htmlspecialchars($post['title']) ?>
+                            </h3>
+                            <p class="text-xs text-gray-600 dark:text-slate-400 mt-1">
+                                by <?= htmlspecialchars($post['nickname'] ?? '익명') ?>
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0 self-center">
+                            <svg class="size-4 text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:translate-x-1 transition-all" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </div>
+                    </a>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="p-8 text-center text-gray-500 dark:text-slate-400">
+                        <svg class="size-12 mx-auto mb-3 text-gray-300 dark:text-slate-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        <p class="text-sm">아직 게시글이 없습니다</p>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- Recent Users -->
+        <div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl shadow-sm overflow-hidden">
+            <div class="p-4 md:p-6 border-b border-gray-200 dark:border-slate-700">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-x-2">
+                        <svg class="size-6 text-emerald-600 dark:text-emerald-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        최근 가입 회원
+                    </h2>
+                    <span class="text-xs text-gray-500 dark:text-slate-400">최신순</span>
+                </div>
+            </div>
+            <div class="divide-y divide-gray-200 dark:divide-slate-700">
+                <?php if (!empty($recentUsers)): ?>
+                    <?php foreach ($recentUsers as $user): ?>
+                    <div class="flex items-center gap-x-3 p-4 hover:bg-emerald-50 dark:hover:bg-emerald-900/10 transition-colors">
+                        <div class="flex-shrink-0">
+                            <span class="inline-flex items-center justify-center size-10 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-full text-white font-semibold text-sm">
+                                <?= mb_substr($user['nickname'] ?? '?', 0, 2) ?>
+                            </span>
+                        </div>
+                        <div class="flex-grow min-w-0">
+                            <h3 class="text-sm font-semibold text-gray-900 dark:text-white truncate">
+                                <?= htmlspecialchars($user['nickname'] ?? '사용자') ?>
+                            </h3>
+                            <p class="text-xs text-gray-600 dark:text-slate-400">
+                                <?= Helper::timeAgo($user['created_at']) ?> 가입
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <span class="inline-flex items-center gap-x-1 py-1 px-2 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400">
+                                <svg class="size-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+                                신규
+                            </span>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="p-8 text-center text-gray-500 dark:text-slate-400">
+                        <svg class="size-12 mx-auto mb-3 text-gray-300 dark:text-slate-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                        <p class="text-sm">아직 가입 회원이 없습니다</p>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
 $content = ob_get_clean();
 require __DIR__ . '/layouts/default.php';
