@@ -13,10 +13,11 @@
             font-weight: 700;
             text-align: center;
             margin-bottom: 0.5rem;
+            color: var(--text-primary);
         }
 
         .auth-header p {
-            color: hsl(var(--muted-foreground));
+            color: var(--text-muted);
             text-align: center;
         }
 
@@ -29,88 +30,97 @@
             font-size: 0.875rem;
             font-weight: 500;
             margin-bottom: 0.5rem;
+            color: var(--text-primary);
         }
 
         .form-group input {
             width: 100%;
-            padding: 0.5rem 0.75rem;
-            border: 1px solid hsl(var(--border));
-            border-radius: 0.375rem;
-            background-color: hsl(var(--background));
-            color: hsl(var(--foreground));
+            padding: 0.625rem 0.875rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
             font-size: 0.875rem;
-            transition: all 0.2s;
+            transition: all 0.15s ease;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: hsl(var(--ring));
-            box-shadow: 0 0 0 3px hsl(var(--ring) / 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .form-group small {
             display: block;
-            margin-top: 0.25rem;
+            margin-top: 0.375rem;
             font-size: 0.75rem;
-            color: hsl(var(--muted-foreground));
+            color: var(--text-muted);
         }
 
         .btn {
             width: 100%;
             padding: 0.625rem 1rem;
-            background-color: hsl(var(--primary));
-            color: hsl(var(--primary-foreground));
+            background-color: var(--primary);
+            color: var(--primary-text);
             border: none;
-            border-radius: 0.375rem;
+            border-radius: 0.5rem;
             font-size: 0.875rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.15s ease;
         }
 
         .btn:hover {
-            opacity: 0.9;
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
         }
 
         .btn:focus-visible {
             outline: none;
-            box-shadow: 0 0 0 3px hsl(var(--ring) / 0.3);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
         }
 
         .links {
             text-align: center;
             margin-top: 1.5rem;
             font-size: 0.875rem;
-            color: hsl(var(--muted-foreground));
+            color: var(--text-muted);
         }
 
         .links a {
-            color: hsl(var(--primary));
+            color: var(--primary);
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.15s ease;
+            font-weight: 500;
         }
 
         .links a:hover {
+            color: var(--primary-hover);
             text-decoration: underline;
         }
 
         .alert {
-            padding: 0.75rem 1rem;
+            padding: 0.875rem 1rem;
             margin-bottom: 1rem;
-            border-radius: 0.375rem;
+            border-radius: 0.5rem;
             font-size: 0.875rem;
+            border: 1px solid;
         }
 
         .alert-success {
             background-color: #dcfce7;
             color: #166534;
-            border: 1px solid #bbf7d0;
+            border-color: #86efac;
         }
 
         .alert-error {
             background-color: #fee2e2;
             color: #991b1b;
-            border: 1px solid #fecaca;
+            border-color: #fca5a5;
         }
 
         .dark .alert-success {

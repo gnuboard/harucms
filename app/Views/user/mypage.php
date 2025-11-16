@@ -2,35 +2,38 @@
 $title = '마이페이지';
 $additional_css = '
 .user-info {
-    background-color: hsl(var(--muted));
-    border: 1px solid hsl(var(--border));
+    background-color: var(--bg-subtle);
+    border: 1px solid var(--border-color);
     padding: 1.5rem;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     margin-bottom: 2rem;
 }
 .user-info-item {
     display: flex;
     justify-content: space-between;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid hsl(var(--border));
+    align-items: center;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--border-color);
 }
 .user-info-item:last-child {
     border-bottom: none;
 }
 .user-info-item label {
     font-weight: 600;
-    color: hsl(var(--foreground));
+    color: var(--text-primary);
+    font-size: 0.875rem;
 }
 .user-info-item span {
-    color: hsl(var(--muted-foreground));
+    color: var(--text-secondary);
+    font-size: 0.875rem;
 }
 .section-title {
     font-size: 1.125rem;
     font-weight: 600;
-    color: hsl(var(--foreground));
+    color: var(--text-primary);
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid hsl(var(--border));
+    border-bottom: 2px solid var(--border-color);
 }
 .form-group {
     margin-bottom: 1.25rem;
@@ -38,54 +41,59 @@ $additional_css = '
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: hsl(var(--foreground));
+    color: var(--text-primary);
     font-weight: 500;
     font-size: 0.875rem;
 }
 .form-group input {
     width: 100%;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid hsl(var(--border));
-    border-radius: 0.375rem;
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    padding: 0.625rem 0.875rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
     font-size: 0.875rem;
-    transition: all 0.2s;
+    transition: all 0.15s ease;
 }
 .form-group input:focus {
     outline: none;
-    border-color: hsl(var(--ring));
-    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.1);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 .form-group input:read-only {
-    background-color: hsl(var(--muted));
-    color: hsl(var(--muted-foreground));
+    background-color: var(--bg-muted);
+    color: var(--text-muted);
+    cursor: not-allowed;
 }
 .form-group small {
     display: block;
-    margin-top: 0.25rem;
-    color: hsl(var(--muted-foreground));
+    margin-top: 0.375rem;
+    color: var(--text-muted);
     font-size: 0.75rem;
 }
 .btn {
     width: 100%;
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    background-color: var(--primary);
+    color: var(--primary-text);
     border: none;
     padding: 0.625rem 1rem;
-    border-radius: 0.375rem;
+    border-radius: 0.5rem;
     font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s ease;
     margin-top: 0.5rem;
 }
 .btn:hover {
-    opacity: 0.9;
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+.btn:active {
+    transform: translateY(0);
 }
 .btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.3);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
 .alert {
     padding: 0.75rem 1rem;

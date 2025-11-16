@@ -1,109 +1,61 @@
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
-<script>
-    tailwind.config = {
-        darkMode: 'class',
-        theme: {
-            extend: {
-                colors: {
-                    border: 'hsl(var(--border))',
-                    input: 'hsl(var(--input))',
-                    ring: 'hsl(var(--ring))',
-                    background: 'hsl(var(--background))',
-                    foreground: 'hsl(var(--foreground))',
-                    primary: {
-                        DEFAULT: 'hsl(var(--primary))',
-                        foreground: 'hsl(var(--primary-foreground))',
-                    },
-                    secondary: {
-                        DEFAULT: 'hsl(var(--secondary))',
-                        foreground: 'hsl(var(--secondary-foreground))',
-                    },
-                    muted: {
-                        DEFAULT: 'hsl(var(--muted))',
-                        foreground: 'hsl(var(--muted-foreground))',
-                    },
-                    accent: {
-                        DEFAULT: 'hsl(var(--accent))',
-                        foreground: 'hsl(var(--accent-foreground))',
-                    },
-                    card: {
-                        DEFAULT: 'hsl(var(--card))',
-                        foreground: 'hsl(var(--card-foreground))',
-                    },
-                    destructive: {
-                        DEFAULT: 'hsl(var(--destructive))',
-                        foreground: 'hsl(var(--destructive-foreground))',
-                    },
-                    popover: {
-                        DEFAULT: 'hsl(var(--popover))',
-                        foreground: 'hsl(var(--popover-foreground))',
-                    },
-                },
-                borderRadius: {
-                    lg: 'var(--radius)',
-                    md: 'calc(var(--radius) - 2px)',
-                    sm: 'calc(var(--radius) - 4px)',
-                }
-            }
-        }
-    }
-</script>
 
 <style>
-    :root {
-        --background: 0 0% 100%;
-        --foreground: 222.2 84% 4.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 222.2 84% 4.9%;
-        --primary: 221.2 83.2% 53.3%;
-        --primary-foreground: 210 40% 98%;
-        --secondary: 210 40% 96.1%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
-        --accent: 210 40% 96.1%;
-        --accent-foreground: 222.2 47.4% 11.2%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --ring: 221.2 83.2% 53.3%;
-        --radius: 0.5rem;
-    }
-
-    .dark {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
-        --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
-        --primary: 217.2 91.2% 59.8%;
-        --primary-foreground: 222.2 47.4% 11.2%;
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 224.3 76.3% 48%;
-    }
-
     * {
-        border-color: hsl(var(--border));
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
     body {
-        background-color: hsl(var(--background));
-        color: hsl(var(--foreground));
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
     }
+
+    /* 라이트 모드 */
+    :root {
+        --bg-main: #ffffff;
+        --bg-subtle: #f8fafc;
+        --bg-muted: #f1f5f9;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #64748b;
+        --border-color: #e2e8f0;
+        --primary: #3b82f6;
+        --primary-hover: #2563eb;
+        --primary-text: #ffffff;
+        --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+        --card-shadow-hover: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
+
+    /* 다크 모드 */
+    .dark {
+        --bg-main: #0f172a;
+        --bg-subtle: #1e293b;
+        --bg-muted: #334155;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+        --border-color: #334155;
+        --primary: #3b82f6;
+        --primary-hover: #60a5fa;
+        --primary-text: #ffffff;
+        --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+        --card-shadow-hover: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+    }
+
+    /* Tailwind 커스텀 클래스 오버라이드 */
+    .bg-background { background-color: var(--bg-main) !important; }
+    .bg-muted { background-color: var(--bg-muted) !important; }
+    .bg-card { background-color: var(--bg-main) !important; }
+    .text-foreground { color: var(--text-primary) !important; }
+    .text-muted-foreground { color: var(--text-muted) !important; }
+    .border-border { border-color: var(--border-color) !important; }
+
+    .hover\:bg-accent:hover { background-color: var(--bg-subtle) !important; }
+    .hover\:text-accent-foreground:hover { color: var(--text-primary) !important; }
 
     /* 공통 유틸리티 */
     .space-y-6 > * + * {
