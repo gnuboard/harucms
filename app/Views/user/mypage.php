@@ -9,7 +9,7 @@ ob_start();
         <h1 class="text-3xl md:text-4xl font-bold bg-clip-text bg-gradient-to-r from-blue-600 via-emerald-600 to-blue-600 text-transparent dark:from-blue-400 dark:via-emerald-400 dark:to-blue-400 mb-2">
             마이페이지
         </h1>
-        <p class="text-gray-600 dark:text-slate-400">프로필 정보를 확인하고 수정할 수 있습니다</p>
+        <p class="text-gray-600 dark:text-slate-400">회원 정보를 확인하고 수정할 수 있습니다</p>
     </div>
 
     <?php

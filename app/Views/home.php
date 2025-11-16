@@ -209,7 +209,7 @@ ob_start();
                     마이페이지
                 </h3>
                 <p class="mt-3 text-gray-600 dark:text-slate-300">
-                    프로필 정보를 관리하고 개인 설정을 변경할 수 있습니다.
+                    회원 정보를 관리하고 개인 설정을 변경할 수 있습니다.
                 </p>
                 <div class="mt-4 flex items-center gap-x-2 text-sm text-indigo-600 dark:text-indigo-500 font-medium group-hover:gap-x-3 transition-all">
                     <span>바로가기</span>

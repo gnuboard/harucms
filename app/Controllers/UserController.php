@@ -237,9 +237,9 @@ class UserController
                 $_SESSION['nickname'] = $data['nickname'];
             }
 
-            Helper::flash('success', '프로필이 수정되었습니다.');
+            Helper::flash('success', '회원정보가 수정되었습니다.');
         } else {
-            Helper::flash('error', '프로필 수정 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+            Helper::flash('error', '회원정보 수정 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
         }
 
         Helper::redirect('/mypage');
