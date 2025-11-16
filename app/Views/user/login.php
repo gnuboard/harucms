@@ -45,7 +45,6 @@ ob_start();
                 id="password"
                 name="password"
                 required
-                placeholder="••••••••"
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all"
             >
         </div>
