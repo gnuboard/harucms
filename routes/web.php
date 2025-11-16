@@ -1,6 +1,6 @@
 <?php
 
-use App\Controllers\HomeController;
+use App\Controllers\IndexController;
 use App\Controllers\UserController;
 use App\Controllers\BoardController;
 use App\Controllers\ContentController;
@@ -12,7 +12,7 @@ $router->get('/install', [InstallController::class, 'index']);
 $router->post('/install', [InstallController::class, 'install']);
 
 // 메인 페이지
-$router->get('/', [HomeController::class, 'index']);
+$router->get('/', [IndexController::class, 'index']);
 
 // 관리자 라우트 (가장 먼저 등록 - /:slug 보다 우선)
 $router->get('/admin', [AdminController::class, 'dashboard']);

@@ -1,5 +1,5 @@
 <?php
-$title = 'HaruCMS - 메인';
+$title = 'HaruCMS';
 ob_start();
 ?>
 

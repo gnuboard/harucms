@@ -342,7 +342,7 @@ function toggleTheme() {
 - 기술적 설명 및 에러 메시지도 한글로 제공
 
 ### File Permissions
-- **app/Views/ 디렉토리의 모든 파일은 664 권한으로 생성**
+- **app/ 디렉토리의 모든 파일은 664 권한으로 생성**
 - Write 도구로 뷰 파일 생성 후 즉시 `chmod 664` 실행
 - 예시: `chmod 664 /home/kagla/harucms/app/Views/user/mypage.php`
 

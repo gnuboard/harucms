@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\User;
 use App\Models\Post;
 
-class HomeController
+class IndexController
 {
     private User $userModel;
     private Post $postModel;
@@ -28,7 +28,7 @@ class HomeController
         $recentPosts = $this->postModel->getRecent(10);
 
         ob_start();
-        require BASE_PATH . '/app/Views/home.php';
+        require BASE_PATH . '/app/Views/index.php';
         return ob_get_clean();
     }
 }
