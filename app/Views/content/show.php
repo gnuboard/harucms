@@ -39,7 +39,6 @@
         <div class="content">
             <h1><?= htmlspecialchars($content['title']) ?></h1>
             <div class="meta">
-                작성자: <?= htmlspecialchars($content['author_name'] ?? $content['email'] ?? '관리자') ?> |
                 작성일: <?= date('Y-m-d H:i', strtotime($content['created_at'])) ?>
                 <?php if ($content['created_at'] != $content['updated_at']): ?>
                     | 수정일: <?= date('Y-m-d H:i', strtotime($content['updated_at'])) ?>

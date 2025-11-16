@@ -18,11 +18,7 @@ class Content
      */
     public function findBySlug(string $slug): ?array
     {
-        $sql = "SELECT c.*, u.email, u.name as author_name
-                FROM contents c
-                LEFT JOIN users u ON c.created_by = u.id
-                WHERE c.slug = ? AND c.status = 'published'";
-
+        $sql = "SELECT * FROM contents WHERE slug = ? AND status = 'published'";
         return $this->db->fetchOne($sql, [$slug]);
     }
 
